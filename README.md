@@ -2,7 +2,7 @@
 
 ## Description du projet
 
-Dans cette planche de TP, vous allez implémenter des classes pour simuler un réseau régulation de gènes.
+Pour ce projet, vous allez implémenter des classes pour simuler un réseau régulation de gènes.
 
 ## Membre du projet
 
