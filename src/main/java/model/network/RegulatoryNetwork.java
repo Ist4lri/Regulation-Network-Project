@@ -37,7 +37,6 @@ public class RegulatoryNetwork {
     this.timeStepLength = timeStepLength;
     this.timeUpperBound = timeUpperBound;
     this.simulationEvents.addAll(simulationEvents);
-    Collections.sort(simulationEvents);
   }
 
   public List<XYChart.Series<Number, Number>> getData() {
@@ -68,7 +67,7 @@ public class RegulatoryNetwork {
   private List<SimulationEvent> getCurrentEvents(double time) {
     List<SimulationEvent> currentEvents = new ArrayList<>();
     for(SimulationEvent event : simulationEvents) {
-      if (event.getTime() == time) {
+      if (Math.abs(event.getTime() - time) < timeStepLength/2.) {
         currentEvents.add(event);
       }
     }

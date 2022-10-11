@@ -4,7 +4,7 @@ import model.genes.RegulatoryGene;
 
 import java.util.List;
 
-public interface SimulationEvent extends Comparable<SimulationEvent> {
+public interface SimulationEvent  {
   void updateGenes();
   double getTime();
 

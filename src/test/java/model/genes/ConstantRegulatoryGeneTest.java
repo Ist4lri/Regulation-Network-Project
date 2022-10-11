@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class NoProductionRegulatoryGeneTest {
+public class ConstantRegulatoryGeneTest {
   public static final double EPSILON = 0.0000001;
 
   private ConstantRegulatoryGene geneX;
@@ -36,7 +36,7 @@ public class NoProductionRegulatoryGeneTest {
   @Test
   void testGetInitialProteinConcentration_afterSettingProteinConcentration() {
     geneX.setProteinConcentration(11);
-    assertThat(geneX.getInitialProteinConcentration()).isCloseTo(11, within(EPSILON));
+    assertThat(geneX.getInitialProteinConcentration()).isCloseTo(1, within(EPSILON));
     geneY.setProteinConcentration(10);
     assertThat(geneY.getInitialProteinConcentration()).isCloseTo(2, within(EPSILON));
     geneZ.setProteinConcentration(2);
