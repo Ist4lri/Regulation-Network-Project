@@ -76,7 +76,7 @@ public class RegulatoryNetwork {
 
   private void updateGenes() {
     for (RegulatoryGene gene : genes) {
-      gene.update();
+      gene.update(timeStepLength);
     }
   }
 
@@ -92,7 +92,7 @@ public class RegulatoryNetwork {
 
     for (RegulatoryGene gene : genes) {
       XYChart.Series<Number, Number> series = new XYChart.Series<>();
-      series.setName(gene.toString());
+      series.setName(gene.getName());
       seriesList.add(series);
     }
   }

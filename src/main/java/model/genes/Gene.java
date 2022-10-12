@@ -4,6 +4,8 @@ public interface Gene {
   double getProteinConcentration();
   double getInitialProteinConcentration();
   void setProteinConcentration(double proteinConcentration);
-  String toString();
-  void update();
+  String getName();
+  void update(double duration);
+  double getMaximalProduction();
+  double getDegradationRate();
 }

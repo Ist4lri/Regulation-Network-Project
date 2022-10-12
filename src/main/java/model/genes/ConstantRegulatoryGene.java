@@ -35,13 +35,12 @@ public class ConstantRegulatoryGene implements RegulatoryGene{
     this.proteinConcentration = proteinConcentration;
   }
 
-  @Override
-  public String toString() {
+  public String getName() {
     return name;
   }
 
   @Override
-  public void update() {
+  public void update(double duration) {
 
   }
 
@@ -58,5 +57,15 @@ public class ConstantRegulatoryGene implements RegulatoryGene{
   @Override
   public void setSignaled(boolean isSignaled) {
     this.isSignaled = isSignaled;
+  }
+
+  @Override
+  public double getMaximalProduction() {
+    return 0;
+  }
+
+  @Override
+  public double getDegradationRate() {
+    return 0;
   }
 }

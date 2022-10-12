@@ -1,9 +1,9 @@
 package model.genes;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class ConstantRegulatoryGeneTest {
   public static final double EPSILON = 0.0000001;
@@ -55,9 +55,9 @@ public class ConstantRegulatoryGeneTest {
 
   @Test
   void testGetName(){
-    assertThat(geneX.toString()).isEqualTo("X");
-    assertThat(geneY.toString()).isEqualTo("Y");
-    assertThat(geneZ.toString()).isEqualTo("Z");
+    assertThat(geneX.getName()).isEqualTo("X");
+    assertThat(geneY.getName()).isEqualTo("Y");
+    assertThat(geneZ.getName()).isEqualTo("Z");
   }
 
   @Test
@@ -82,6 +82,16 @@ public class ConstantRegulatoryGeneTest {
     assertThat(geneX.isSignaled()).isTrue();
   }
 
+  @Test
+  void testGetMaximalProduction(){
+    assertThat(geneX.getMaximalProduction()).isCloseTo(0, withinPercentage(0.001));
+    assertThat(geneY.getMaximalProduction()).isCloseTo(0, withinPercentage(0.001));
+  }
 
+  @Test
+  void testGetDegradationRate(){
+    assertThat(geneX.getDegradationRate()).isCloseTo(0, withinPercentage(0.001));
+    assertThat(geneY.getDegradationRate()).isCloseTo(0, withinPercentage(0.001));
+  }
 }
 

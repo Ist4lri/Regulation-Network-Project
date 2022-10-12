@@ -40,7 +40,7 @@ public class RegulatoryNetworkDataManager {
   private static void writeGenes(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork) throws IOException {
     for(RegulatoryGene gene : regulatoryNetwork.getGenes()){
       String geneString = gene.getClass().getSimpleName() + " ";
-      geneString += gene + " ";
+      geneString += gene.getName() + " ";
       geneString += gene.getInitialProteinConcentration() + " ";
       geneString += gene.isSignaled() + "\n";
       bufferedWriter.write(geneString);
