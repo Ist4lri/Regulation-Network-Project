@@ -1,7 +1,7 @@
 package model.network;
 
 import model.events.SimulationEvent;
-import model.genes.ConstantRegulatedGene;
+import model.genes.ConstantGene;
 import model.genes.Gene;
 
 import java.io.BufferedReader;
@@ -73,16 +73,16 @@ public class RegulatoryNetworkDataManager {
     String name = tokens[1];
     double concentration = Double.parseDouble(tokens[2]);
     boolean isSignaled = Boolean.parseBoolean(tokens[3]);
-    genes.put(name, new ConstantRegulatedGene(name, concentration, isSignaled));
+    genes.put(name, new ConstantGene(name, concentration, isSignaled));
   }
 
   public RegulatoryNetwork generate() {
     List<Gene> genes = new ArrayList<>();
-    Gene x = new ConstantRegulatedGene("X", 3, true);
+    Gene x = new ConstantGene("X", 3, true);
     genes.add(x);
-    Gene y = new ConstantRegulatedGene("Y", 2, true);
+    Gene y = new ConstantGene("Y", 2, true);
     genes.add(y);
-    Gene z = new ConstantRegulatedGene("Z", 4, false);
+    Gene z = new ConstantGene("Z", 4, false);
     genes.add(z);
     List<SimulationEvent> simulationEvents = new ArrayList<>();
     return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20);

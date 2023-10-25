@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ConstantRegulatedGeneTest {
+public class ConstantGeneTest {
   public static final double EPSILON = 0.0000001;
 
-  private ConstantRegulatedGene geneX;
-  private ConstantRegulatedGene geneY;
-  private ConstantRegulatedGene geneZ;
+  private ConstantGene geneX;
+  private ConstantGene geneY;
+  private ConstantGene geneZ;
 
   @BeforeEach
   void initializeGenes(){
-    geneX = new ConstantRegulatedGene("X", 1, true);
-    geneY = new ConstantRegulatedGene("Y", 2, false);
-    geneZ = new ConstantRegulatedGene("Z", 3, false);
+    geneX = new ConstantGene("X", 1, true);
+    geneY = new ConstantGene("Y", 2, false);
+    geneZ = new ConstantGene("Z", 3, false);
   }
 
   @Test
