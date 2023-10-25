@@ -1,6 +1,6 @@
 package model.events;
 
-import model.genes.RegulatoryGene;
+import model.genes.Gene;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public interface SimulationEvent {
    *
    * @return A list of regulatory genes associated with this event.
    */
-  List<RegulatoryGene> getGenes();
+  List<Gene> getGenes();
 
   /**
    * Get a description of this simulation event.

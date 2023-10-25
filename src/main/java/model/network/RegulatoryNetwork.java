@@ -2,19 +2,19 @@ package model.network;
 
 import javafx.scene.chart.XYChart;
 import model.events.SimulationEvent;
-import model.genes.RegulatoryGene;
+import model.genes.Gene;
+import model.genes.RegulatedGene;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class RegulatoryNetwork {
-  private final List<RegulatoryGene> genes;
+  private final List<Gene> genes;
   private final double timeStepLength;
   private final double timeUpperBound;
   private List<XYChart.Series<Number, Number>> seriesList;
 
-  public List<RegulatoryGene> getGenes() {
+  public List<Gene> getGenes() {
     return genes;
   }
 
@@ -32,7 +32,7 @@ public class RegulatoryNetwork {
 
   private final List<SimulationEvent> simulationEvents = new ArrayList<>();
 
-  public RegulatoryNetwork(List<RegulatoryGene> genes, List<SimulationEvent> simulationEvents, double timeStepLength, double timeUpperBound) {
+  public RegulatoryNetwork(List<Gene> genes, List<SimulationEvent> simulationEvents, double timeStepLength, double timeUpperBound) {
     this.genes = genes;
     this.timeStepLength = timeStepLength;
     this.timeUpperBound = timeUpperBound;
@@ -75,7 +75,7 @@ public class RegulatoryNetwork {
   }
 
   private void updateGenes() {
-    for (RegulatoryGene gene : genes) {
+    for (RegulatedGene gene : genes) {
       gene.update(timeStepLength);
     }
   }
@@ -90,7 +90,7 @@ public class RegulatoryNetwork {
   private void initializeSeriesList() {
     seriesList = new ArrayList<>();
 
-    for (RegulatoryGene gene : genes) {
+    for (RegulatedGene gene : genes) {
       XYChart.Series<Number, Number> series = new XYChart.Series<>();
       series.setName(gene.getName());
       seriesList.add(series);

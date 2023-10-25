@@ -1,8 +1,8 @@
 package model.network;
 
 import model.events.SimulationEvent;
-import model.genes.ConstantRegulatoryGene;
-import model.genes.RegulatoryGene;
+import model.genes.ConstantRegulatedGene;
+import model.genes.Gene;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,7 +24,7 @@ public class RegulatoryNetworkDataManager {
     for(SimulationEvent event : regulatoryNetwork.getSimulationEvents()){
       StringBuilder eventString = new StringBuilder(event.getClass().getSimpleName() + " ");
       eventString.append(event.getTime()).append(" ");
-      List<RegulatoryGene> genes = event.getGenes();
+      List<Gene> genes = event.getGenes();
       for(int index = 0; index < genes.size(); index++){
         if(index!=0) {
           eventString.append(",");
@@ -38,7 +38,7 @@ public class RegulatoryNetworkDataManager {
   }
 
   private static void writeGenes(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork) throws IOException {
-    for(RegulatoryGene gene : regulatoryNetwork.getGenes()){
+    for(Gene gene : regulatoryNetwork.getGenes()){
       String geneString = gene.getClass().getSimpleName() + " ";
       geneString += gene.getName() + " ";
       geneString += gene.getInitialProteinConcentration() + " ";
@@ -48,7 +48,7 @@ public class RegulatoryNetworkDataManager {
   }
 
   public RegulatoryNetwork read(BufferedReader bufferedReader) throws IOException {
-    Map<String,RegulatoryGene> genes = new HashMap<>();
+    Map<String, Gene> genes = new HashMap<>();
     List<SimulationEvent> events = new ArrayList<>();
 
     double timeUpperBound = 20;
@@ -69,20 +69,20 @@ public class RegulatoryNetworkDataManager {
     return new RegulatoryNetwork(new ArrayList<>(genes.values()), events, timeStepLength, timeUpperBound);
   }
 
-  private static void readConstantRegulatoryGene(Map<String, RegulatoryGene> genes, String[] tokens) {
+  private static void readConstantRegulatoryGene(Map<String, Gene> genes, String[] tokens) {
     String name = tokens[1];
     double concentration = Double.parseDouble(tokens[2]);
     boolean isSignaled = Boolean.parseBoolean(tokens[3]);
-    genes.put(name, new ConstantRegulatoryGene(name, concentration, isSignaled));
+    genes.put(name, new ConstantRegulatedGene(name, concentration, isSignaled));
   }
 
   public RegulatoryNetwork generate() {
-    List<RegulatoryGene> genes = new ArrayList<>();
-    RegulatoryGene x = new ConstantRegulatoryGene("X", 3, true);
+    List<Gene> genes = new ArrayList<>();
+    Gene x = new ConstantRegulatedGene("X", 3, true);
     genes.add(x);
-    RegulatoryGene y = new ConstantRegulatoryGene("Y", 2, true);
+    Gene y = new ConstantRegulatedGene("Y", 2, true);
     genes.add(y);
-    RegulatoryGene z = new ConstantRegulatoryGene("Z", 4, false);
+    Gene z = new ConstantRegulatedGene("Z", 4, false);
     genes.add(z);
     List<SimulationEvent> simulationEvents = new ArrayList<>();
     return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20);

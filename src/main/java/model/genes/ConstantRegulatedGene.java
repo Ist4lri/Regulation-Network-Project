@@ -2,13 +2,13 @@ package model.genes;
 
 import model.regulators.Regulator;
 
-public class ConstantRegulatoryGene implements RegulatoryGene{
+public class ConstantRegulatedGene implements Gene {
   private double proteinConcentration;
   private final double initialProteinConcentration;
   private final String name;
   private boolean isSignaled;
 
-  public ConstantRegulatoryGene(String name, double proteinConcentration, boolean isSignaled) {
+  public ConstantRegulatedGene(String name, double proteinConcentration, boolean isSignaled) {
     this.proteinConcentration = proteinConcentration;
     this.initialProteinConcentration = proteinConcentration;
     this.name = name;

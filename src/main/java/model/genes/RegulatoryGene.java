@@ -1,27 +1,10 @@
 package model.genes;
 
-import model.regulators.Regulator;
-
 /**
  * This interface represents a regulatory gene, which extends the basic gene interface and includes methods
  * for managing a gene's regulation.
  */
-public interface RegulatoryGene extends Gene {
-
-  /**
-   * Get the regulator associated with this regulatory gene.
-   *
-   * @return The regulator linked to this gene.
-   */
-  Regulator getRegulator();
-
-  /**
-   * Set the regulator associated with this regulatory gene.
-   *
-   * @param regulator The regulator to associate with this gene.
-   */
-  void setRegulator(Regulator regulator);
-
+public interface RegulatoryGene extends BasicGene{
   /**
    * Check if this regulatory gene is currently signaled, i.e., is influenced by its regulator.
    *
