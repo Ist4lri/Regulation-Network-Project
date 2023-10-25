@@ -45,13 +45,8 @@ public class ConcreteGene implements RegulatedGene {
 
     @Override
     public void update(double duration) {
-        System.out.println(this.getDegradationRate());
-        System.out.println(this.getProteinConcentration());
-        System.out.println(this.getMaximalProduction());
-
         this.setProteinConcentration(
                 this.getProteinConcentration() + ((this.production() - this.degradation()) * duration));
-        System.out.println(this.getProteinConcentration());
         if (getProteinConcentration() < 0) {
             setProteinConcentration(0.0);
         }
