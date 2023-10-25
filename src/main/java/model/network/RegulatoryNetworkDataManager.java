@@ -32,7 +32,7 @@ public class RegulatoryNetworkDataManager {
         eventString.append(genes.get(index));
       }
       eventString.append(" ");
-      eventString.append(event.getInfo()).append("\n");
+      eventString.append(event.description()).append("\n");
       bufferedWriter.write(eventString.toString());
     }
   }
