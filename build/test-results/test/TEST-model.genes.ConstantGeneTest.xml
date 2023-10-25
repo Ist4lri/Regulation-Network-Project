@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="model.genes.ConstantGeneTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-10-25T11:54:02" hostname="pl-portable-linux" time="0.055">
+<testsuite name="model.genes.ConstantGeneTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-10-25T15:36:31" hostname="pl-portable-linux" time="0.052">
   <properties/>
-  <testcase name="testGetInitialProteinConcentration_afterConstruction()" classname="model.genes.ConstantGeneTest" time="0.041"/>
-  <testcase name="testGetDegradationRate()" classname="model.genes.ConstantGeneTest" time="0.001"/>
-  <testcase name="testGetMaximalProduction()" classname="model.genes.ConstantGeneTest" time="0.0"/>
-  <testcase name="testIsSignaled()" classname="model.genes.ConstantGeneTest" time="0.001"/>
+  <testcase name="testGetInitialProteinConcentration_afterConstruction()" classname="model.genes.ConstantGeneTest" time="0.006"/>
+  <testcase name="testGetDegradationRate()" classname="model.genes.ConstantGeneTest" time="0.004"/>
+  <testcase name="testGetMaximalProduction()" classname="model.genes.ConstantGeneTest" time="0.002"/>
+  <testcase name="testIsSignaled()" classname="model.genes.ConstantGeneTest" time="0.003"/>
   <testcase name="testGetName()" classname="model.genes.ConstantGeneTest" time="0.002"/>
-  <testcase name="testGetInitialProteinConcentration_afterSettingProteinConcentration()" classname="model.genes.ConstantGeneTest" time="0.001"/>
-  <testcase name="testGetProteinConcentration_afterSettingProteinConcentration()" classname="model.genes.ConstantGeneTest" time="0.001"/>
-  <testcase name="testSetSignaled()" classname="model.genes.ConstantGeneTest" time="0.001"/>
-  <testcase name="testGetProteinConcentration_afterConstruction()" classname="model.genes.ConstantGeneTest" time="0.001"/>
+  <testcase name="testGetInitialProteinConcentration_afterSettingProteinConcentration()" classname="model.genes.ConstantGeneTest" time="0.003"/>
+  <testcase name="testGetProteinConcentration_afterSettingProteinConcentration()" classname="model.genes.ConstantGeneTest" time="0.003"/>
+  <testcase name="testSetSignaled()" classname="model.genes.ConstantGeneTest" time="0.002"/>
+  <testcase name="testGetProteinConcentration_afterConstruction()" classname="model.genes.ConstantGeneTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

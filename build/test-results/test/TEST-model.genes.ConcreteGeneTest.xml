@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.genes.ConcreteGeneTest" tests="3" skipped="0" failures="1" errors="0" timestamp="2023-10-25T15:36:10" hostname="pl-portable-linux" time="20.958">
+  <properties/>
+  <testcase name="testSetProteinConcentration()" classname="model.genes.ConcreteGeneTest" time="0.038"/>
+  <testcase name="testAllGettersOfClass()" classname="model.genes.ConcreteGeneTest" time="0.002"/>
+  <testcase name="testUpdate()" classname="model.genes.ConcreteGeneTest" time="20.917">
+    <failure message="org.opentest4j.AssertionFailedError: &#10;expected: 19.8&#10; but was: 20.2" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: 
+expected: 19.8
+ but was: 20.2
+	at java.base@17.0.8.1/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base@17.0.8.1/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base@17.0.8.1/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base@17.0.8.1/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at app//model.genes.ConcreteGeneTest.testUpdate(ConcreteGeneTest.java:55)
+	at java.base@17.0.8.1/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base@17.0.8.1/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@17.0.8.1/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <system-out><![CDATA[0.1
+10.0
+5.0
+20.2
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
