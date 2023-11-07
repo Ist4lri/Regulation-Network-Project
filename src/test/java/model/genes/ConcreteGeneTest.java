@@ -36,25 +36,11 @@ public class ConcreteGeneTest {
         assertThat(gene.getProteinConcentration()).isEqualTo(15.0);
     }
 
-    // @Test
-    // public void testSetRegulator() {
-    // Regulator regulator = new YourRegulatorImplementation(); // Remplacez par
-    // votre propre implémentation de
-    // // Regulator
-    // gene.setRegulator(regulator);
-    // assertThat(gene.getRegulator()).isEqualTo(regulator);
-    // }
-
     @Test
     public void testUpdate() {
         double duration = 2.0;
         double expectedProteinConcentration = 20.2;
-
-        // concentration + (((concentration + product)-(concentration -
-        // degrad))*duration)
-
         gene.update(duration);
-
         assertThat(gene.getProteinConcentration()).isEqualTo(expectedProteinConcentration);
     }
 }
