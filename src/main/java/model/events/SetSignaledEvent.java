@@ -14,7 +14,7 @@ public class SetSignaledEvent extends AbstractSimulationEvent {
 
     @Override
     public String description() {
-        return "New Signaled Value" + newSignaledValue;
+        return this.getGenes() + " " + this.newSignaledValue;
     }
 
     @Override

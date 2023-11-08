@@ -38,7 +38,7 @@ public class RegulatoryNetworkDataManager {
         eventString.append(genes.get(index));
       }
       eventString.append(" ");
-      eventString.append(event.description()).append("\n");
+      eventString.append(event).append("\n");
       bufferedWriter.write(eventString.toString());
     }
   }
@@ -98,11 +98,11 @@ public class RegulatoryNetworkDataManager {
     genes.add(y);
     y.setRegulator(new BooleanActivator(10, x));
     Gene z = new ConcreteGene("Z", 5.0, 0.15, 2.0, true);
-    genes.add(z);
     z.setRegulator(new BooleanRepressor(7, y));
+    genes.add(z);
     List<SimulationEvent> simulationEvents = new ArrayList<>();
-    simulationEvents.add(new SetProteinConcentrationEvent(List.of(x), 10.0,3.0));
-    simulationEvents.add(new SetProteinConcentrationEvent(List.of(x, y), 5.0,4.0));
+    simulationEvents.add(new SetProteinConcentrationEvent(List.of(x), 10.0, 3.0));
+    simulationEvents.add(new SetProteinConcentrationEvent(List.of(x, y), 5.0, 4.0));
     return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20.0);
   }
 

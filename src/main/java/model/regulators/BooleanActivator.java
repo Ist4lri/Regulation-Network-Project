@@ -11,9 +11,9 @@ public class BooleanActivator extends BooleanRegulator {
     @Override
     public double inputFunction() {
         if (this.geneIsSignaled() && this.thresholdIsAttained()) {
-            return 0;
+            return 1.0;
         }
-        return 1.0;
+        return 0;
     }
 
 }
