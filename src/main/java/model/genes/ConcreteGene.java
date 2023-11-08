@@ -12,8 +12,8 @@ public class ConcreteGene implements Gene {
     private final String name;
     private boolean isSignaled;
 
-    public ConcreteGene(double initialProteinConcentration, double maximalProduction,
-            double degradationRate, String name, boolean isSignaled) {
+    public ConcreteGene(String name, double maximalProduction, double degradationRate,
+            double initialProteinConcentration, boolean isSignaled) {
         this.regulator = null;
         this.initialProteinConcentration = initialProteinConcentration;
         this.proteinConcentration = initialProteinConcentration;
@@ -47,8 +47,8 @@ public class ConcreteGene implements Gene {
     public void update(double duration) {
         this.setProteinConcentration(
                 this.getProteinConcentration() + ((this.production() - this.degradation()) * duration));
-        if (getProteinConcentration() < 0) {
-            setProteinConcentration(0.0);
+        if (this.getProteinConcentration() < 0) {
+            this.setProteinConcentration(0.0);
         }
     }
 

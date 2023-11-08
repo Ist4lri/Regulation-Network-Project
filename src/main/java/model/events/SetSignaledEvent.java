@@ -7,7 +7,7 @@ import model.genes.Gene;
 public class SetSignaledEvent extends AbstractSimulationEvent {
     private boolean newSignaledValue;
 
-    protected SetSignaledEvent(List<Gene> genes, double time, boolean newSignaledValue) {
+    public SetSignaledEvent(List<Gene> genes, double time, boolean newSignaledValue) {
         super(genes, time);
         this.newSignaledValue = newSignaledValue;
     }

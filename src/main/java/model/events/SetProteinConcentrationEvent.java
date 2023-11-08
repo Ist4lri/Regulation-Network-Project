@@ -7,7 +7,7 @@ import model.genes.Gene;
 public class SetProteinConcentrationEvent extends AbstractSimulationEvent {
     private double newConcentration;
 
-    protected SetProteinConcentrationEvent(List<Gene> genes, double time, double newConcentration) {
+    public SetProteinConcentrationEvent(List<Gene> genes, double time, double newConcentration) {
         super(genes, time);
         this.newConcentration = newConcentration;
     }

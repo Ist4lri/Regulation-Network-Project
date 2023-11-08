@@ -4,7 +4,7 @@ import model.genes.Gene;
 
 public class BooleanRepressor extends BooleanRegulator {
 
-    BooleanRepressor(double threshold, Gene regulatedGene) {
+    public BooleanRepressor(double threshold, Gene regulatedGene) {
         super(threshold, regulatedGene);
     }
 

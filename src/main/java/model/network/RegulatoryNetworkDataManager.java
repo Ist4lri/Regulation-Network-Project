@@ -1,9 +1,13 @@
 package model.network;
 
+import model.events.SetProteinConcentrationEvent;
 import model.events.SimulationEvent;
 import model.genes.ConcreteGene;
 import model.genes.ConstantGene;
 import model.genes.Gene;
+import model.regulators.AlwaysOnRegulator;
+import model.regulators.BooleanActivator;
+import model.regulators.BooleanRepressor;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -44,8 +48,14 @@ public class RegulatoryNetworkDataManager {
     for (Gene gene : regulatoryNetwork.getGenes()) {
       String geneString = gene.getClass().getSimpleName() + " ";
       geneString += gene.getName() + " ";
+      geneString += gene.getMaximalProduction() + " ";
+      geneString += gene.getDegradationRate() + " ";
       geneString += gene.getInitialProteinConcentration() + " ";
       geneString += gene.isSignaled() + "\n";
+      geneString += gene.getRegulator().getClass().getSimpleName() + " ";
+      geneString += gene.getName() + " ";
+      geneString += gene.getRegulator().description() + "\n";
+
       bufferedWriter.write(geneString);
     }
   }
@@ -81,14 +91,19 @@ public class RegulatoryNetworkDataManager {
 
   public RegulatoryNetwork generate() {
     List<Gene> genes = new ArrayList<>();
-    Gene x = new ConcreteGene(3, 2, 1, "A", true);
+    Gene x = new ConcreteGene("X", 3.0, 0.1, 2.0, true);
+    x.setRegulator(new AlwaysOnRegulator());
     genes.add(x);
-    Gene y = new ConcreteGene(2, 1.2, 3, "B", true);
+    Gene y = new ConcreteGene("Y", 4.0, 0.12, 2.0, true);
     genes.add(y);
-    Gene z = new ConcreteGene(1, 1.2, 0.1, "C", false);
+    y.setRegulator(new BooleanActivator(10, x));
+    Gene z = new ConcreteGene("Z", 5.0, 0.15, 2.0, true);
     genes.add(z);
+    z.setRegulator(new BooleanRepressor(7, y));
     List<SimulationEvent> simulationEvents = new ArrayList<>();
-    return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20);
+    simulationEvents.add(new SetProteinConcentrationEvent(List.of(x), 10.0,3.0));
+    simulationEvents.add(new SetProteinConcentrationEvent(List.of(x, y), 5.0,4.0));
+    return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20.0);
   }
 
 }
