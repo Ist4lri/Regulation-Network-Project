@@ -20,13 +20,14 @@ public class RegulatoryNetworkDataManager {
     writeEvents(bufferedWriter, regulatoryNetwork);
   }
 
-  private static void writeEvents(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork) throws IOException {
-    for(SimulationEvent event : regulatoryNetwork.getSimulationEvents()){
+  private static void writeEvents(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork)
+      throws IOException {
+    for (SimulationEvent event : regulatoryNetwork.getSimulationEvents()) {
       StringBuilder eventString = new StringBuilder(event.getClass().getSimpleName() + " ");
       eventString.append(event.getTime()).append(" ");
       List<Gene> genes = event.getGenes();
-      for(int index = 0; index < genes.size(); index++){
-        if(index!=0) {
+      for (int index = 0; index < genes.size(); index++) {
+        if (index != 0) {
           eventString.append(",");
         }
         eventString.append(genes.get(index));
@@ -37,8 +38,9 @@ public class RegulatoryNetworkDataManager {
     }
   }
 
-  private static void writeGenes(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork) throws IOException {
-    for(Gene gene : regulatoryNetwork.getGenes()){
+  private static void writeGenes(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork)
+      throws IOException {
+    for (Gene gene : regulatoryNetwork.getGenes()) {
       String geneString = gene.getClass().getSimpleName() + " ";
       geneString += gene.getName() + " ";
       geneString += gene.getInitialProteinConcentration() + " ";
@@ -56,9 +58,9 @@ public class RegulatoryNetworkDataManager {
 
     int lineNumber = 0;
 
-    for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()){
+    for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
       String[] tokens = line.split(" ");
-      switch (tokens[0]){
+      switch (tokens[0]) {
         case "TimeStep" -> timeStepLength = Double.parseDouble(tokens[1]);
         case "TimeUpperBound" -> timeUpperBound = Double.parseDouble(tokens[1]);
         case "ConstantRegulatoryGene" -> readConstantRegulatoryGene(genes, tokens);
@@ -87,6 +89,5 @@ public class RegulatoryNetworkDataManager {
     List<SimulationEvent> simulationEvents = new ArrayList<>();
     return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20);
   }
-
 
 }
