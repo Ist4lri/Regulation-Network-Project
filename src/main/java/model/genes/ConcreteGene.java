@@ -2,7 +2,7 @@ package model.genes;
 
 import model.regulators.Regulator;
 
-public class ConcreteGene implements RegulatedGene {
+public class ConcreteGene implements Gene {
 
     private Regulator regulator;
     private double proteinConcentration;
@@ -81,14 +81,14 @@ public class ConcreteGene implements RegulatedGene {
     }
 
     private double degradation() {
-        return this.proteinConcentration - this.degradationRate;
+        return (this.proteinConcentration * this.degradationRate);
     }
 
     private double production() {
         if (this.regulator == null) {
-            return this.proteinConcentration + this.maximalProduction;
+            return this.maximalProduction;
         }
-        return this.proteinConcentration * (this.regulator.inputFunction() + this.maximalProduction);
+        return (this.regulator.inputFunction() * this.maximalProduction);
     }
 
 }

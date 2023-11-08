@@ -39,7 +39,7 @@ public class ConcreteGeneTest {
     @Test
     public void testUpdate() {
         double duration = 2.0;
-        double expectedProteinConcentration = 20.2;
+        double expectedProteinConcentration = 18.0;
         gene.update(duration);
         assertThat(gene.getProteinConcentration()).isEqualTo(expectedProteinConcentration);
     }

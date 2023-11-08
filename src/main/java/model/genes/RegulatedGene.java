@@ -3,7 +3,8 @@ package model.genes;
 import model.regulators.Regulator;
 
 /**
- * This interface represents a regulated gene, which extends the basic gene interface and includes methods
+ * This interface represents a regulated gene, which extends the basic gene
+ * interface and includes methods
  * for managing a gene's regulation.
  */
 public interface RegulatedGene extends BasicGene {

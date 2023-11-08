@@ -1,6 +1,7 @@
 package model.network;
 
 import model.events.SimulationEvent;
+import model.genes.ConcreteGene;
 import model.genes.ConstantGene;
 import model.genes.Gene;
 
@@ -80,11 +81,11 @@ public class RegulatoryNetworkDataManager {
 
   public RegulatoryNetwork generate() {
     List<Gene> genes = new ArrayList<>();
-    Gene x = new ConstantGene("X", 3, true);
+    Gene x = new ConcreteGene(3, 2, 1, "A", true);
     genes.add(x);
-    Gene y = new ConstantGene("Y", 2, true);
+    Gene y = new ConcreteGene(2, 1.2, 3, "B", true);
     genes.add(y);
-    Gene z = new ConstantGene("Z", 4, false);
+    Gene z = new ConcreteGene(1, 1.2, 0.1, "C", false);
     genes.add(z);
     List<SimulationEvent> simulationEvents = new ArrayList<>();
     return new RegulatoryNetwork(genes, simulationEvents, 0.01, 20);
