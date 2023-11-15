@@ -1,5 +1,6 @@
 package model.genes;
 
+import model.file.writer.GeneVisitor;
 import model.regulators.Regulator;
 
 public class ConcreteGene implements Gene {
@@ -89,6 +90,11 @@ public class ConcreteGene implements Gene {
             return this.maximalProduction;
         }
         return (this.regulator.inputFunction() * this.maximalProduction);
+    }
+
+    @Override
+    public String accept(GeneVisitor visitor) {
+        return visitor.visit(this);
     }
 
 }

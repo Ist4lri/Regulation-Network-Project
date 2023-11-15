@@ -17,19 +17,13 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
     }
 
     @Override
-    public String serialize(ConcreteGene entity, RegulatoryNetworkWriter writer)
-    {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method
-        'deserialize'");
+    public String serialize(ConcreteGene entity, RegulatoryNetworkWriter writer) {
+        // TODO Auto-generated method : need to implement serialize.
     }
 
     @Override
-    public ConcreteGene deserialize(String string, RegulatoryNetworkReader
-    reader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method
-        'deserialize'");
+    public ConcreteGene deserialize(String string, RegulatoryNetworkReader reader) {
+        // TODO Auto-generated method : need to implement deserialize
     }
 
     public synchronized static ConcreteGeneSerializer getInstance() {

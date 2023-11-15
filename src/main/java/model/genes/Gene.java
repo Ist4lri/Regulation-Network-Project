@@ -1,4 +1,8 @@
 package model.genes;
 
-public interface Gene extends RegulatoryGene, RegulatedGene{
+import model.file.writer.GeneVisitor;
+
+public interface Gene extends RegulatoryGene, RegulatedGene {
+
+    public String accept(GeneVisitor visitor);
 }

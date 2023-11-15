@@ -1,5 +1,6 @@
 package model.genes;
 
+import model.file.writer.GeneVisitor;
 import model.regulators.Regulator;
 
 public class ConstantGene implements Gene {
@@ -68,4 +69,10 @@ public class ConstantGene implements Gene {
   public double getDegradationRate() {
     return 0;
   }
+
+  @Override
+  public String accept(GeneVisitor visitor) {
+    return visitor.visit(this);
+  }
+
 }
