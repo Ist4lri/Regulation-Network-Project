@@ -16,7 +16,7 @@ public class ConcreteGeneTest {
         String name = "GeneA";
         boolean isSignaled = true;
 
-        gene = new ConcreteGene(initialProteinConcentration, maximalProduction, degradationRate, name, isSignaled);
+        gene = new ConcreteGene(name, maximalProduction, degradationRate, initialProteinConcentration, isSignaled);
     }
 
     @Test
