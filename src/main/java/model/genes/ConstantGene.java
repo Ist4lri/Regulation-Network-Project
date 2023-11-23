@@ -70,6 +70,14 @@ public class ConstantGene implements Gene {
     return 0;
   }
 
+  public String getAllInformation() {
+    return this.getName() + " "
+        + this.getMaximalProduction() + " "
+        + this.getDegradationRate() + " "
+        + this.getInitialProteinConcentration() + " "
+        + this.isSignaled() + " ";
+  }
+
   @Override
   public String accept(GeneVisitor visitor) {
     return visitor.visit(this);

@@ -1,6 +1,7 @@
 package model.file.serializers.gene;
 
-import javafx.scene.control.SingleSelectionModel;
+import model.file.reader.RegulatoryNetworkReader;
+import model.file.writer.RegulatoryNetworkWriter;
 import model.genes.ConstantGene;
 
 public class ConstantGeneSerializer implements EntitySerializer<ConstantGene> {
@@ -18,12 +19,17 @@ public class ConstantGeneSerializer implements EntitySerializer<ConstantGene> {
 
     @Override
     public String serialize(ConstantGene entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method : need to implement serialize.
+        return entity.getAllInformation();
     }
 
     @Override
     public ConstantGene deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method : need to implement deserialize
+        String[] dispatchElement = string.split(" ");
+
+        return new ConstantGene(
+                dispatchElement[0],
+                Double.parseDouble(dispatchElement[1]),
+                Boolean.parseBoolean(dispatchElement[2]));
     }
 
     public synchronized static ConstantGeneSerializer getInstance() {

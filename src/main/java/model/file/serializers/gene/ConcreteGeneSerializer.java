@@ -1,6 +1,7 @@
 package model.file.serializers.gene;
 
-import javafx.scene.control.SingleSelectionModel;
+import model.file.reader.RegulatoryNetworkReader;
+import model.file.writer.RegulatoryNetworkWriter;
 import model.genes.ConcreteGene;
 
 public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
@@ -18,12 +19,19 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
 
     @Override
     public String serialize(ConcreteGene entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method : need to implement serialize.
+        return entity.getAllInformation();
     }
 
     @Override
     public ConcreteGene deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method : need to implement deserialize
+        String[] dispatchElement = string.split(" ");
+
+        return new ConcreteGene(
+                dispatchElement[0],
+                Double.parseDouble(dispatchElement[1]),
+                Double.parseDouble(dispatchElement[2]),
+                Double.parseDouble(dispatchElement[3]),
+                Boolean.parseBoolean(dispatchElement[4]));
     }
 
     public synchronized static ConcreteGeneSerializer getInstance() {
