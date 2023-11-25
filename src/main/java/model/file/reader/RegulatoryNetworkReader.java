@@ -1,6 +1,8 @@
 package model.file.reader;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,15 +16,14 @@ public class RegulatoryNetworkReader {
 
     public RegulatoryNetworkReader() {
         this.geneSerializers = new HashMap<>();
-        this.genes = new HashMap<>();
     };
 
     private void addGeneSerializer(EntitySerializer<? extends Gene> serializer) {
-
+        this.geneSerializers.put(serializer.getCode(), serializer);
     }
 
-    private EntitySerializer<? extends Gene> getGenSerializer(String code) {
-
+    private EntitySerializer<? extends Gene> getGeneSerializer(String code) {
+        return this.geneSerializers.get(code);
     }
 
     public void addGene(Gene gene) {
@@ -33,10 +34,19 @@ public class RegulatoryNetworkReader {
         return this.genes.get(geneName);
     }
 
-    public RegulatoryNetwork read(BufferedReader bufferedReader) {
-        String line = bufferedReader.readLine();
-        while (line != null) {
-
+    public RegulatoryNetwork read(BufferedReader bufferedReader) throws IOException {
+        this.genes = new HashMap<>();
+        for (String line = ""; line != null; line = bufferedReader.readLine()) {
+            String[] dispatchElement = line.split(" ");
+            switch (dispatchElement[0]) {
+                case "TimeStep", "TimeUpperBound":
+                    break;
+                default:
+                    if (this.geneSerializers.containsKey(dispatchElement[0])) {
+                        this.addGene(getGeneSerializer(dispatchElement[0]).deserialize(line, null));
+                    }
+            }
         }
+        return new RegulatoryNetwork(new ArrayList<>(this.genes.values()), null, 0, 0);
     }
 }
