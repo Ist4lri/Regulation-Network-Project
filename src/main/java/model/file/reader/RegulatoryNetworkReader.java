@@ -8,6 +8,7 @@ import java.util.Map;
 
 import model.genes.Gene;
 import model.network.RegulatoryNetwork;
+import model.regulators.Regulator;
 import model.events.SimulationEvent;
 import model.file.serializers.event.SetProteinConcentrationEventSerializer;
 import model.file.serializers.event.SetSignaledEventSerializer;
@@ -18,7 +19,9 @@ import model.file.serializers.gene.EntitySerializer;
 public class RegulatoryNetworkReader {
     private Map<String, EntitySerializer<? extends Gene>> geneSerializers;
     private Map<String, EntitySerializer<? extends SimulationEvent>> eventSerializers;
+    private Map<String, EntitySerializer<? extends Regulator>> regulatorSerializers;
     private Map<String, Gene> genes;
+    private Map<String, Regulator> regulators;
     private ArrayList<SimulationEvent> simulationEvents;
 
     public RegulatoryNetworkReader() {
@@ -28,6 +31,7 @@ public class RegulatoryNetworkReader {
         this.eventSerializers = new HashMap<>();
         this.addEventSerializer(SetSignaledEventSerializer.getInstance());
         this.addEventSerializer(SetProteinConcentrationEventSerializer.getInstance());
+        this.regulatorSerializers = new HashMap<>();
         this.genes = new HashMap<>();
         this.simulationEvents = new ArrayList<>();
     };
@@ -40,6 +44,10 @@ public class RegulatoryNetworkReader {
         this.eventSerializers.put(serializer.getCode(), serializer);
     }
 
+    private void addRegulatorSerializer(EntitySerializer<? extends Regulator> serializer) {
+        this.regulatorSerializers.put(serializer.getCode(), serializer);
+    }
+
     private EntitySerializer<? extends Gene> getGeneSerializer(String code) {
         return this.geneSerializers.get(code);
     }
@@ -48,12 +56,20 @@ public class RegulatoryNetworkReader {
         return this.eventSerializers.get(code);
     }
 
+    private EntitySerializer<? extends Regulator> getRegulatroSerializer(String code) {
+        return this.regulatorSerializers.get(code);
+    }
+
     public void addGene(Gene gene) {
         this.genes.put(gene.getName(), gene);
     }
 
     public void addSiumlationEvents(SimulationEvent event) {
         this.simulationEvents.add(event);
+    }
+
+    public Regulator getRegulators(String regulatorName) {
+        return regulators.get(regulatorName);
     }
 
     public Gene getGene(String geneName) {
@@ -78,8 +94,10 @@ public class RegulatoryNetworkReader {
                         this.addGene(getGeneSerializer(dispatchElement[0]).deserialize(line, this));
                     } else if (this.eventSerializers.containsKey(dispatchElement[0])) {
                         this.addSiumlationEvents(getEventSerializer(dispatchElement[0]).deserialize(line, this));
+                    } else if (this.regulatorSerializers.containsKey(dispatchElement[0])) {
+                        this.addRegulatorSerializer(getRegulatroSerializer(line));
                     } else {
-                        throw new IOException("Error : Declare new geneSerializers type at this line :" + lineCounter);
+                        throw new IOException("Error at : " + lineCounter);
                     }
             }
             lineCounter++;
