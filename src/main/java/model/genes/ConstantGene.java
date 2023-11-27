@@ -9,11 +9,14 @@ public class ConstantGene implements Gene {
   private final String name;
   private boolean isSignaled;
 
+  private final boolean initialIsSignaled;
+
   public ConstantGene(String name, double proteinConcentration, boolean isSignaled) {
     this.proteinConcentration = proteinConcentration;
     this.initialProteinConcentration = proteinConcentration;
     this.name = name;
     this.isSignaled = isSignaled;
+    this.initialIsSignaled = isSignaled;
   }
 
   @Override
@@ -81,6 +84,12 @@ public class ConstantGene implements Gene {
   @Override
   public String accept(GeneVisitor visitor) {
     return visitor.visit(this);
+  }
+
+  @Override
+  public boolean getInitialIsSignaled() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getInitialIsSignaled'");
   }
 
 }

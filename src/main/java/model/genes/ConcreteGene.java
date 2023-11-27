@@ -13,6 +13,8 @@ public class ConcreteGene implements Gene {
     private final String name;
     private boolean isSignaled;
 
+    private final boolean initialIsSignaled;
+
     public ConcreteGene(String name, double maximalProduction, double degradationRate,
             double initialProteinConcentration, boolean isSignaled) {
         this.regulator = null;
@@ -22,6 +24,7 @@ public class ConcreteGene implements Gene {
         this.degradationRate = degradationRate;
         this.name = name;
         this.isSignaled = isSignaled;
+        this.initialIsSignaled = isSignaled;
     }
 
     @Override
@@ -103,6 +106,11 @@ public class ConcreteGene implements Gene {
     @Override
     public String accept(GeneVisitor visitor) {
         return visitor.visit(this);
+    }
+
+    @Override
+    public boolean getInitialIsSignaled() {
+        return this.initialIsSignaled;
     }
 
 }
