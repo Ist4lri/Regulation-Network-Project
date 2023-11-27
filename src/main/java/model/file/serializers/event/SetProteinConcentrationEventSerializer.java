@@ -20,7 +20,10 @@ public class SetProteinConcentrationEventSerializer implements EntitySerializer<
 
     @Override
     public String serialize(SetProteinConcentrationEvent entity, RegulatoryNetworkWriter writer) {
-        return entity.getAllInformation();
+        return entity.getClass().getSimpleName() + " "
+                + entity.getTime() + " "
+                + new ListGeneSerializer().serialize(entity.getGenes(), writer) + " "
+                + entity.description() + "\n";
     }
 
     @Override

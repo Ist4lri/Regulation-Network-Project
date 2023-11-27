@@ -20,7 +20,8 @@ public class RegulatoryNetworkWriter {
         this.writeEvents(bufferedWriter, regulatoryNetwork);
     }
 
-    private void writeGenes(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork) throws IOException {
+    private void writeGenes(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork)
+            throws IOException {
         for (Gene gene : regulatoryNetwork.getGenes()) {
             bufferedWriter.write(gene.accept(geneVisitor));
         }

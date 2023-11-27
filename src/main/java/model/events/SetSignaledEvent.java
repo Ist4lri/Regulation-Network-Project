@@ -15,19 +15,12 @@ public class SetSignaledEvent extends AbstractSimulationEvent {
 
     @Override
     public String description() {
-        return this.getGenes() + " " + this.newSignaledValue;
+        return "" + this.newSignaledValue;
     }
 
     @Override
     protected void updateGene(Gene gene) {
         gene.setSignaled(newSignaledValue);
-    }
-
-    @Override
-    public String getAllInformation() {
-        return this.getClass().getSimpleName() + " "
-                + this.getTime() + " "
-                + this.description() + "\n";
     }
 
     @Override

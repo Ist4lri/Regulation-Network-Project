@@ -95,14 +95,6 @@ public class ConcreteGene implements Gene {
         return (this.regulator.inputFunction() * this.maximalProduction);
     }
 
-    public String getAllInformation() {
-        return this.getName() + " "
-                + this.getMaximalProduction() + " "
-                + this.getDegradationRate() + " "
-                + this.getInitialProteinConcentration() + " "
-                + this.isSignaled() + " ";
-    }
-
     @Override
     public String accept(GeneVisitor visitor) {
         return visitor.visit(this);

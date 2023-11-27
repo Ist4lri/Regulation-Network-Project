@@ -21,7 +21,7 @@ public class ListGeneSerializer implements EntitySerializer<List<Gene>> {
         for (Gene gene : entity) {
             toSend += gene.getName() + ",";
         }
-        return toSend;
+        return "[" + toSend + "]";
 
     }
 

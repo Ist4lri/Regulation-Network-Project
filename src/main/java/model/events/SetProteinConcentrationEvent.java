@@ -15,19 +15,12 @@ public class SetProteinConcentrationEvent extends AbstractSimulationEvent {
 
     @Override
     public String description() {
-        return this.getGenes() + " " + this.newConcentration;
+        return "" + this.newConcentration;
     }
 
     @Override
     protected void updateGene(Gene gene) {
         gene.setProteinConcentration(newConcentration);
-    }
-
-    @Override
-    public String getAllInformation() {
-        return this.getClass().getSimpleName() + " "
-                + this.getTime() + " "
-                + this.description() + "\n";
     }
 
     @Override

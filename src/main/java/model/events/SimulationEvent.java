@@ -37,7 +37,5 @@ public interface SimulationEvent {
    */
   String description();
 
-  String getAllInformation();
-
   String accept(EventVisitor visitor);
 }
