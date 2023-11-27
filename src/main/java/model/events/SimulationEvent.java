@@ -5,7 +5,8 @@ import model.genes.Gene;
 import java.util.List;
 
 /**
- * This interface represents an event in a simulation that involves updating genes.
+ * This interface represents an event in a simulation that involves updating
+ * genes.
  */
 public interface SimulationEvent {
 
@@ -34,5 +35,6 @@ public interface SimulationEvent {
    * @return A string describing the event.
    */
   String description();
-}
 
+  String getAllInformation();
+}

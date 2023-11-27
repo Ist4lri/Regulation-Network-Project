@@ -19,7 +19,6 @@ public abstract class AbstractSimulationEvent implements SimulationEvent {
         for (Gene gene : genes) {
             updateGene(gene);
         }
-
     }
 
     @Override

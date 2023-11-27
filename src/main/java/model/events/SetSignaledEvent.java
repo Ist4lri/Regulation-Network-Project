@@ -21,4 +21,12 @@ public class SetSignaledEvent extends AbstractSimulationEvent {
     protected void updateGene(Gene gene) {
         gene.setSignaled(newSignaledValue);
     }
+
+    @Override
+    public String getAllInformation() {
+        return this.getClass().getSimpleName() + " "
+                + this.getTime() + " "
+                + this.description() + "\n";
+    }
+
 }

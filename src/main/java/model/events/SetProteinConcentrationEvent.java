@@ -22,4 +22,11 @@ public class SetProteinConcentrationEvent extends AbstractSimulationEvent {
         gene.setProteinConcentration(newConcentration);
     }
 
+    @Override
+    public String getAllInformation() {
+        return this.getClass().getSimpleName() + " "
+                + this.getTime() + " "
+                + this.description() + "\n";
+    }
+
 }
