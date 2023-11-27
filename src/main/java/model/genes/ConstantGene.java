@@ -88,8 +88,7 @@ public class ConstantGene implements Gene {
 
   @Override
   public boolean getInitialIsSignaled() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getInitialIsSignaled'");
+    return this.initialIsSignaled;
   }
 
 }
