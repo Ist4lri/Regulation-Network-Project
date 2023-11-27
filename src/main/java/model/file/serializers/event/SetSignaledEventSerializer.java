@@ -8,6 +8,11 @@ import model.file.writer.RegulatoryNetworkWriter;
 
 public class SetSignaledEventSerializer implements EntitySerializer<SetSignaledEvent> {
 
+    private static SetSignaledEventSerializer instance = null;
+
+    public SetSignaledEventSerializer() {
+    };
+
     @Override
     public String getCode() {
         return "SetSignaledEvent";
@@ -25,6 +30,13 @@ public class SetSignaledEventSerializer implements EntitySerializer<SetSignaledE
         return new SetSignaledEvent(new ListGeneSerializer().deserialize(toDispatch[2], reader),
                 Double.parseDouble(toDispatch[3]),
                 Boolean.parseBoolean(toDispatch[1]));
+    }
+
+    public synchronized static SetSignaledEventSerializer getInstance() {
+        if (instance == null) {
+            instance = new SetSignaledEventSerializer();
+        }
+        return instance;
     }
 
 }

@@ -1,5 +1,6 @@
 package model.events;
 
+import model.file.writer.EventVisitor;
 import model.genes.Gene;
 
 import java.util.List;
@@ -37,4 +38,6 @@ public interface SimulationEvent {
   String description();
 
   String getAllInformation();
+
+  String accept(EventVisitor visitor);
 }

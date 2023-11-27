@@ -8,6 +8,11 @@ import model.file.writer.RegulatoryNetworkWriter;
 
 public class SetProteinConcentrationEventSerializer implements EntitySerializer<SetProteinConcentrationEvent> {
 
+    private static SetProteinConcentrationEventSerializer instance = null;
+
+    public SetProteinConcentrationEventSerializer() {
+    }
+
     @Override
     public String getCode() {
         return "SetProteinConcentrationEvent";
@@ -24,6 +29,13 @@ public class SetProteinConcentrationEventSerializer implements EntitySerializer<
         return new SetProteinConcentrationEvent(new ListGeneSerializer().deserialize(toDispatch[2], reader),
                 Double.parseDouble(toDispatch[1]),
                 Double.parseDouble(toDispatch[3]));
+    }
+
+    public synchronized static SetProteinConcentrationEventSerializer getInstance() {
+        if (instance == null) {
+            instance = new SetProteinConcentrationEventSerializer();
+        }
+        return instance;
     }
 
 }
