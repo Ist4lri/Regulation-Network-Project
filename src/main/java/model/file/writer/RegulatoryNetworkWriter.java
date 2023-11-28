@@ -6,7 +6,6 @@ import java.io.IOException;
 import model.events.SimulationEvent;
 import model.genes.Gene;
 import model.network.RegulatoryNetwork;
-import model.regulators.Regulator;
 
 public class RegulatoryNetworkWriter {
     private GeneVisitor geneVisitor;
@@ -46,7 +45,7 @@ public class RegulatoryNetworkWriter {
     private void writeRegulators(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork)
             throws IOException {
         for (Gene gene : regulatoryNetwork.getGenes()) {
-            if (gene.getRegulator() instanceof Regulator) {
+            if (gene.getRegulator() != null) {
                 bufferedWriter.write(gene.getName());
                 bufferedWriter.write((gene.getRegulator()).accept(regulatorVisitor));
             }
