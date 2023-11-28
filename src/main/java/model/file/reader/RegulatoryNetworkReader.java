@@ -15,6 +15,12 @@ import model.file.serializers.event.SetSignaledEventSerializer;
 import model.file.serializers.gene.ConcreteGeneSerializer;
 import model.file.serializers.gene.ConstantGeneSerializer;
 import model.file.serializers.gene.EntitySerializer;
+import model.file.serializers.regulators.AlwaysOffRegulatorSerializer;
+import model.file.serializers.regulators.AlwaysOnRegulatorSerializer;
+import model.file.serializers.regulators.BooleanActivatorSerializer;
+import model.file.serializers.regulators.BooleanRepressorSerializer;
+import model.file.serializers.regulators.MaxCompositeRegulatorSerializer;
+import model.file.serializers.regulators.MinCompositeRegulatorSerializer;
 
 public class RegulatoryNetworkReader {
     private Map<String, EntitySerializer<? extends Gene>> geneSerializers;
@@ -32,6 +38,12 @@ public class RegulatoryNetworkReader {
         this.addEventSerializer(SetSignaledEventSerializer.getInstance());
         this.addEventSerializer(SetProteinConcentrationEventSerializer.getInstance());
         this.regulatorSerializers = new HashMap<>();
+        this.addRegulatorSerializer(AlwaysOffRegulatorSerializer.getInstance());
+        this.addRegulatorSerializer(AlwaysOnRegulatorSerializer.getInstance());
+        this.addRegulatorSerializer(BooleanActivatorSerializer.getInstance());
+        this.addRegulatorSerializer(BooleanRepressorSerializer.getInstance());
+        this.addRegulatorSerializer(MaxCompositeRegulatorSerializer.getInstance());
+        this.addRegulatorSerializer(MinCompositeRegulatorSerializer.getInstance());
         this.genes = new HashMap<>();
         this.simulationEvents = new ArrayList<>();
     };
