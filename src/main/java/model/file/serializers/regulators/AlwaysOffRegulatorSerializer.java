@@ -7,6 +7,8 @@ import model.regulators.AlwaysOffRegulator;
 
 public class AlwaysOffRegulatorSerializer implements EntitySerializer<AlwaysOffRegulator> {
 
+    private static AlwaysOffRegulatorSerializer instance = null;
+
     @Override
     public String getCode() {
         return "AlwaysOffRegulator";
@@ -20,6 +22,13 @@ public class AlwaysOffRegulatorSerializer implements EntitySerializer<AlwaysOffR
     @Override
     public AlwaysOffRegulator deserialize(String string, RegulatoryNetworkReader reader) {
         return new AlwaysOffRegulator();
+    }
+
+    public synchronized static AlwaysOffRegulatorSerializer getInstance() {
+        if (instance == null) {
+            instance = new AlwaysOffRegulatorSerializer();
+        }
+        return instance;
     }
 
 }

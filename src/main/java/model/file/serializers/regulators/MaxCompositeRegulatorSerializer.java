@@ -8,6 +8,8 @@ import model.regulators.MaxCompositeRegulator;
 
 public class MaxCompositeRegulatorSerializer implements EntitySerializer<MaxCompositeRegulator> {
 
+    private static MaxCompositeRegulatorSerializer instance = null;
+
     @Override
     public String getCode() {
         return "MaxCompositeRegulator";
@@ -21,6 +23,13 @@ public class MaxCompositeRegulatorSerializer implements EntitySerializer<MaxComp
     @Override
     public MaxCompositeRegulator deserialize(String string, RegulatoryNetworkReader reader) {
         return new MaxCompositeRegulator(new ListRegulatorSerializer().deserialize(string, reader));
+    }
+
+    public synchronized static MaxCompositeRegulatorSerializer getInstance() {
+        if (instance == null) {
+            instance = new MaxCompositeRegulatorSerializer();
+        }
+        return instance;
     }
 
 }

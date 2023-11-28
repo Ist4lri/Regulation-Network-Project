@@ -8,6 +8,8 @@ import model.regulators.MinCompositeRegulator;
 
 public class MinCompositeRegulatorSerializer implements EntitySerializer<MinCompositeRegulator> {
 
+    private static MinCompositeRegulatorSerializer instance = null;
+
     @Override
     public String getCode() {
         return "MinCompositeRegulator";
@@ -21,6 +23,13 @@ public class MinCompositeRegulatorSerializer implements EntitySerializer<MinComp
     @Override
     public MinCompositeRegulator deserialize(String string, RegulatoryNetworkReader reader) {
         return new MinCompositeRegulator(new ListRegulatorSerializer().deserialize(string, reader));
+    }
+
+    public synchronized static MinCompositeRegulatorSerializer getInstance() {
+        if (instance == null) {
+            instance = new MinCompositeRegulatorSerializer();
+        }
+        return instance;
     }
 
 }
