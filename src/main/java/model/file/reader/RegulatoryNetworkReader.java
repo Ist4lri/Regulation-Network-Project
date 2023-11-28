@@ -68,7 +68,7 @@ public class RegulatoryNetworkReader {
         return this.eventSerializers.get(code);
     }
 
-    private EntitySerializer<? extends Regulator> getRegulatroSerializer(String code) {
+    private EntitySerializer<? extends Regulator> getRegulatorSerializer(String code) {
         return this.regulatorSerializers.get(code);
     }
 
@@ -78,6 +78,10 @@ public class RegulatoryNetworkReader {
 
     public void addSiumlationEvents(SimulationEvent event) {
         this.simulationEvents.add(event);
+    }
+
+    public void addRegulator(Regulator regulator) {
+        this.regulators.put(regulator.getClass().getSimpleName(), regulator);
     }
 
     public Regulator getRegulators(String regulatorName) {
@@ -108,7 +112,7 @@ public class RegulatoryNetworkReader {
                     } else if (this.eventSerializers.containsKey(dispatchElement[0])) {
                         this.addSiumlationEvents(getEventSerializer(dispatchElement[0]).deserialize(line, this));
                     } else if (this.regulatorSerializers.containsKey(dispatchElement[0])) {
-                        this.addRegulatorSerializer(getRegulatroSerializer(line));
+                        this.addRegulator(getRegulatorSerializer(dispatchElement[0]).deserialize(line, this));
                     } else {
                         throw new IOException("Error at : " + lineCounter);
                     }
