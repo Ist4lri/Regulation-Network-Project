@@ -1,5 +1,6 @@
 package model.regulators;
 
+import model.file.writer.RegulatorVisitor;
 import model.genes.Gene;
 
 public class BooleanRepressor extends BooleanRegulator {
@@ -14,6 +15,11 @@ public class BooleanRepressor extends BooleanRegulator {
             return 0;
         }
         return 1.0;
+    }
+
+    @Override
+    public String accept(RegulatorVisitor visitor) {
+        return visitor.visit(this);
     }
 
 }

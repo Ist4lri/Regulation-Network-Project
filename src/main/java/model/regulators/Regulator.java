@@ -1,8 +1,12 @@
 package model.regulators;
 
+import model.file.writer.RegulatorVisitor;
+
 /**
- * This interface represents a regulator, which defines methods for the input value of the regulator, i.e.
- * the proportion of maximal production of the protein that is produced by the regulated gene.
+ * This interface represents a regulator, which defines methods for the input
+ * value of the regulator, i.e.
+ * the proportion of maximal production of the protein that is produced by the
+ * regulated gene.
  */
 public interface Regulator {
   /**
@@ -18,5 +22,6 @@ public interface Regulator {
    * @return A string describing the regulator.
    */
   String description();
-}
 
+  String accept(RegulatorVisitor visitor);
+}

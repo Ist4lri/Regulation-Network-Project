@@ -2,6 +2,8 @@ package model.regulators;
 
 import java.util.List;
 
+import model.file.writer.RegulatorVisitor;
+
 public class MaxCompositeRegulator extends CompositeRegulator {
 
     public MaxCompositeRegulator(List<Regulator> regulators) {
@@ -16,6 +18,11 @@ public class MaxCompositeRegulator extends CompositeRegulator {
     @Override
     protected double cumulativeValue(double accumulator, double value) {
         return Math.max(accumulator, value);
+    }
+
+    @Override
+    public String accept(RegulatorVisitor visitor) {
+        return visitor.visit(this);
     }
 
 }
