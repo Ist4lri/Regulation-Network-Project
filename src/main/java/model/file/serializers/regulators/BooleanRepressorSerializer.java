@@ -9,20 +9,18 @@ public class BooleanRepressorSerializer implements EntitySerializer<BooleanRepre
 
     @Override
     public String getCode() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+        return "BooleanRepressor";
     }
 
     @Override
     public String serialize(BooleanRepressor entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serialize'");
+        return entity.description();
     }
 
     @Override
     public BooleanRepressor deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+        String[] toDispatch = string.split(" ");
+        return new BooleanRepressor(Double.parseDouble(toDispatch[0]), reader.getGene(toDispatch[1]));
     }
 
 }

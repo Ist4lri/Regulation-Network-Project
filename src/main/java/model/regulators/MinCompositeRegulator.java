@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MinCompositeRegulator extends CompositeRegulator {
 
-    protected MinCompositeRegulator(List<Regulator> regulators) {
+    public MinCompositeRegulator(List<Regulator> regulators) {
         super(regulators);
     }
 

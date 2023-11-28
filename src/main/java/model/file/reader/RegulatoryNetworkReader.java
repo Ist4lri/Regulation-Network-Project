@@ -81,6 +81,7 @@ public class RegulatoryNetworkReader {
         double timeUpperBound = 0;
         int lineCounter = 0;
         for (String line = ""; line != null; line = bufferedReader.readLine()) {
+            lineCounter++;
             String[] dispatchElement = line.split(" ");
             switch (dispatchElement[0]) {
                 case "TimeStep":
@@ -100,7 +101,6 @@ public class RegulatoryNetworkReader {
                         throw new IOException("Error at : " + lineCounter);
                     }
             }
-            lineCounter++;
         }
         return new RegulatoryNetwork(new ArrayList<>(this.genes.values()),
                 this.simulationEvents, timeStep, timeUpperBound);

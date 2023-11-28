@@ -2,6 +2,7 @@ package model.file.serializers.regulators;
 
 import model.file.reader.RegulatoryNetworkReader;
 import model.file.serializers.gene.EntitySerializer;
+import model.file.serializers.list.ListRegulatorSerializer;
 import model.file.writer.RegulatoryNetworkWriter;
 import model.regulators.MaxCompositeRegulator;
 
@@ -9,20 +10,17 @@ public class MaxCompositeRegulatorSerializer implements EntitySerializer<MaxComp
 
     @Override
     public String getCode() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+        return "MaxCompositeRegulator";
     }
 
     @Override
     public String serialize(MaxCompositeRegulator entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serialize'");
+        return entity.description();
     }
 
     @Override
     public MaxCompositeRegulator deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+        return new MaxCompositeRegulator(new ListRegulatorSerializer().deserialize(string, reader));
     }
 
 }

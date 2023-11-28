@@ -9,20 +9,17 @@ public class AlwaysOffRegulatorSerializer implements EntitySerializer<AlwaysOffR
 
     @Override
     public String getCode() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+        return "AlwaysOffRegulator";
     }
 
     @Override
     public String serialize(AlwaysOffRegulator entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serialize'");
+        return entity.description();
     }
 
     @Override
     public AlwaysOffRegulator deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+        return new AlwaysOffRegulator();
     }
 
 }

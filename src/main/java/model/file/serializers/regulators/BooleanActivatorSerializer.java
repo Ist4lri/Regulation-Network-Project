@@ -9,20 +9,18 @@ public class BooleanActivatorSerializer implements EntitySerializer<BooleanActiv
 
     @Override
     public String getCode() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCode'");
+        return "BooleanActivator";
     }
 
     @Override
     public String serialize(BooleanActivator entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serialize'");
+        return entity.description();
     }
 
     @Override
     public BooleanActivator deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+        String[] toDispatch = string.split(" ");
+        return new BooleanActivator(Double.parseDouble(toDispatch[0]), reader.getGene(toDispatch[1]));
     }
 
 }

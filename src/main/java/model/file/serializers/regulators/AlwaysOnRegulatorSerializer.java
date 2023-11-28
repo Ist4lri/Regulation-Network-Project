@@ -14,14 +14,12 @@ public class AlwaysOnRegulatorSerializer implements EntitySerializer<AlwaysOnReg
 
     @Override
     public String serialize(AlwaysOnRegulator entity, RegulatoryNetworkWriter writer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serialize'");
+        return entity.description();
     }
 
     @Override
     public AlwaysOnRegulator deserialize(String string, RegulatoryNetworkReader reader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deserialize'");
+        return new AlwaysOnRegulator();
     }
 
 }
