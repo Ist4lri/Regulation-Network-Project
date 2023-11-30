@@ -2,6 +2,8 @@ package viewer;
 
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
+import model.file.reader.RegulatoryNetworkReader;
+import model.file.writer.RegulatoryNetworkWriter;
 import model.network.RegulatoryNetwork;
 import model.network.RegulatoryNetworkDataManager;
 import java.io.*;
@@ -10,14 +12,15 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class MainAppController {
-  public static final FileChooser.ExtensionFilter REGULATORY_NETWORK_FILES =
-          new FileChooser.ExtensionFilter("Regulatory Network Files", "*.rgn");
+  public static final FileChooser.ExtensionFilter REGULATORY_NETWORK_FILES = new FileChooser.ExtensionFilter(
+      "Regulatory Network Files", "*.rgn");
   private MainApp mainApp;
 
   private final RegulatoryNetworkDataManager regulatoryNetworkDataManager = new RegulatoryNetworkDataManager();
+  private final RegulatoryNetworkReader regulatoryNetworkReader = new RegulatoryNetworkReader();
+  private final RegulatoryNetworkWriter regulatoryNetworkWriter = new RegulatoryNetworkWriter();
 
-  private RegulatoryNetwork regulatoryNetwork =
-          new RegulatoryNetwork(new ArrayList<>(), new ArrayList<>(), 0.001, 20);
+  private RegulatoryNetwork regulatoryNetwork = new RegulatoryNetwork(new ArrayList<>(), new ArrayList<>(), 0.001, 20);
   @FXML
   public GeneChart geneChart;
 
@@ -40,11 +43,10 @@ public class MainAppController {
     if (file != null) {
       try {
         BufferedReader bufferedReader = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_16);
-        regulatoryNetwork = regulatoryNetworkDataManager.read(bufferedReader);
+        regulatoryNetwork = regulatoryNetworkReader.read(bufferedReader);
         plot(regulatoryNetwork);
         bufferedReader.close();
-      }
-      catch(IOException exception){
+      } catch (IOException exception) {
         exception.printStackTrace();
       }
     }
@@ -65,10 +67,9 @@ public class MainAppController {
     if (file != null) {
       try {
         BufferedWriter stream = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_16);
-        regulatoryNetworkDataManager.write(stream, regulatoryNetwork);
+        regulatoryNetworkWriter.write(stream, regulatoryNetwork);
         stream.close();
-      }
-      catch(IOException exception){
+      } catch (IOException exception) {
         exception.printStackTrace();
       }
     }
