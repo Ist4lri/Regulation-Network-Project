@@ -30,9 +30,9 @@ public class SetSignaledEventSerializer implements EntitySerializer<SetSignaledE
     public SetSignaledEvent deserialize(String string, RegulatoryNetworkReader reader) {
         String[] toDispatch = string.split(" ");
 
-        return new SetSignaledEvent(new ListGeneSerializer().deserialize(toDispatch[1], reader),
-                Double.parseDouble(toDispatch[0]),
-                Boolean.parseBoolean(toDispatch[2]));
+        return new SetSignaledEvent(new ListGeneSerializer().deserialize(toDispatch[2], reader),
+                Double.parseDouble(toDispatch[1]),
+                Boolean.parseBoolean(toDispatch[3]));
     }
 
     public synchronized static SetSignaledEventSerializer getInstance() {

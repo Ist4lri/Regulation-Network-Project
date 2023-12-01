@@ -26,8 +26,7 @@ public class ListRegulatorSerializer implements EntitySerializer<List<Regulator>
 
     @Override
     public List<Regulator> deserialize(String string, RegulatoryNetworkReader reader) {
-        String[] toDispatchFirst = string.split("MaxCompositeRegulator");
-        String stringOfRegulator = toDispatchFirst[1].replace("]", "").replace(" [", "");
+        String stringOfRegulator = string.split("Regulator")[1].replace("]", "").replace(" [", "");
         List<Regulator> listOfRegulator = new ArrayList<>();
         String[] toDispatch = stringOfRegulator.split(",");
         for (String onePart : toDispatch) {
