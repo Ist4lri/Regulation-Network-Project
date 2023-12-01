@@ -19,11 +19,12 @@ public class ConstantGeneSerializer implements EntitySerializer<ConstantGene> {
 
     @Override
     public String serialize(ConstantGene entity, RegulatoryNetworkWriter writer) {
-        return entity.getName() + " "
+        return entity.getClass().getSimpleName() + " "
+                + entity.getName() + " "
                 + entity.getMaximalProduction() + " "
                 + entity.getDegradationRate() + " "
                 + entity.getInitialProteinConcentration() + " "
-                + entity.isSignaled() + " ";
+                + entity.isSignaled() + "\n";
     }
 
     @Override

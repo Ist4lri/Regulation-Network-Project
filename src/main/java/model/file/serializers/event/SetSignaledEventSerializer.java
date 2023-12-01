@@ -20,9 +20,9 @@ public class SetSignaledEventSerializer implements EntitySerializer<SetSignaledE
 
     @Override
     public String serialize(SetSignaledEvent entity, RegulatoryNetworkWriter writer) {
-        return entity.getClass() + " "
+        return entity.getClass().getSimpleName() + " "
                 + entity.getTime() + " "
-                + new ListGeneSerializer().serialize(entity.getGenes(), writer)
+                + new ListGeneSerializer().serialize(entity.getGenes(), writer) + " "
                 + entity.description() + "\n";
     }
 

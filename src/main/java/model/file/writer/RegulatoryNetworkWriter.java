@@ -13,6 +13,9 @@ public class RegulatoryNetworkWriter {
     private RegulatorVisitor regulatorVisitor;
 
     public RegulatoryNetworkWriter() {
+        this.geneVisitor = new ConcreteGeneVisitor(this);
+        this.eventVisitor = new ConcreteEventVisitor(this);
+        this.regulatorVisitor = new ConcreteRegulatorVisitor(this);
     };
 
     public void write(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork) throws IOException {
@@ -31,8 +34,8 @@ public class RegulatoryNetworkWriter {
 
     private void writeConfiguration(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork)
             throws IOException {
-        bufferedWriter.write("TimeStep" + regulatoryNetwork.getTimeStepLength());
-        bufferedWriter.write("TimeUpperBound" + regulatoryNetwork.getTimeUpperBound());
+        bufferedWriter.write("TimeStep " + regulatoryNetwork.getTimeStepLength() + "\n");
+        bufferedWriter.write("TimeUpperBound " + regulatoryNetwork.getTimeUpperBound() + "\n");
     }
 
     private void writeEvents(BufferedWriter bufferedWriter, RegulatoryNetwork regulatoryNetwork)

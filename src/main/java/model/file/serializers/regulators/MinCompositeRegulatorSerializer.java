@@ -17,7 +17,7 @@ public class MinCompositeRegulatorSerializer implements EntitySerializer<MinComp
 
     @Override
     public String serialize(MinCompositeRegulator entity, RegulatoryNetworkWriter writer) {
-        return entity.description();
+        return " " + entity.getClass().getSimpleName() + " [" + entity.description() + "]" + "\n";
     }
 
     @Override

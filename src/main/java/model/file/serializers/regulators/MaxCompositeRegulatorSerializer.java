@@ -17,7 +17,7 @@ public class MaxCompositeRegulatorSerializer implements EntitySerializer<MaxComp
 
     @Override
     public String serialize(MaxCompositeRegulator entity, RegulatoryNetworkWriter writer) {
-        return entity.description();
+        return " " + entity.getClass().getSimpleName() + " [" + entity.description() + "]" + "\n";
     }
 
     @Override

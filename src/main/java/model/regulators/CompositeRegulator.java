@@ -24,9 +24,9 @@ public abstract class CompositeRegulator implements Regulator {
     public String description() {
         String toSend = "";
         for (Regulator regulator : this.regulators) {
-            toSend += regulator.getClass().getSimpleName() + " " + regulator.description();
+            toSend += regulator.getClass().getSimpleName() + " " + regulator.description() + ",";
         }
-        return toSend;
+        return toSend.substring(0, toSend.length() - 1);
     }
 
 }

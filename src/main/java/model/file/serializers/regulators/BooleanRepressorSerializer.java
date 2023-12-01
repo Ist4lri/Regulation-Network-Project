@@ -16,7 +16,7 @@ public class BooleanRepressorSerializer implements EntitySerializer<BooleanRepre
 
     @Override
     public String serialize(BooleanRepressor entity, RegulatoryNetworkWriter writer) {
-        return entity.description();
+        return " " + entity.getClass().getSimpleName() + " [" + entity.description() + "]" + "\n";
     }
 
     @Override

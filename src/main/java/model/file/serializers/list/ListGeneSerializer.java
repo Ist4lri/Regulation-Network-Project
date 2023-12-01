@@ -19,9 +19,9 @@ public class ListGeneSerializer implements EntitySerializer<List<Gene>> {
     public String serialize(List<Gene> entity, RegulatoryNetworkWriter writer) {
         String toSend = "";
         for (Gene gene : entity) {
-            toSend += "," + gene.getName();
+            toSend += gene.getName() + ",";
         }
-        return "[" + toSend + "]";
+        return "[" + toSend.substring(0, toSend.length() - 1) + "]";
 
     }
 

@@ -16,7 +16,7 @@ public class BooleanActivatorSerializer implements EntitySerializer<BooleanActiv
 
     @Override
     public String serialize(BooleanActivator entity, RegulatoryNetworkWriter writer) {
-        return entity.description();
+        return " " + entity.getClass().getSimpleName() + " [" + entity.description() + "]" + "\n";
     }
 
     @Override

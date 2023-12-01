@@ -19,11 +19,12 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
 
     @Override
     public String serialize(ConcreteGene entity, RegulatoryNetworkWriter writer) {
-        return entity.getName() + " "
+        return entity.getClass().getSimpleName() + " "
+                + entity.getName() + " "
                 + entity.getMaximalProduction() + " "
                 + entity.getDegradationRate() + " "
                 + entity.getInitialProteinConcentration() + " "
-                + entity.isSignaled() + " ";
+                + entity.isSignaled() + "\n";
     }
 
     @Override

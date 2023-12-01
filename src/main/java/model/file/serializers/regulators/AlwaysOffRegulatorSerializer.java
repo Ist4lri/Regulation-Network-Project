@@ -16,7 +16,7 @@ public class AlwaysOffRegulatorSerializer implements EntitySerializer<AlwaysOffR
 
     @Override
     public String serialize(AlwaysOffRegulator entity, RegulatoryNetworkWriter writer) {
-        return entity.description();
+        return " " + entity.getClass().getSimpleName() + " [" + entity.description() + "]" + "\n";
     }
 
     @Override
