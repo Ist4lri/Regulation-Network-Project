@@ -11,8 +11,8 @@ public class BooleanRepressor extends BooleanRegulator {
 
     @Override
     public double inputFunction() {
-        if (this.geneIsSignaled() && this.thresholdIsAttained()) {
-            return 0;
+        if (this.geneIsSignaled() & this.thresholdIsAttained()) {
+            return 0.0;
         }
         return 1.0;
     }

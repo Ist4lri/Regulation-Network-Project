@@ -45,6 +45,7 @@ public class RegulatoryNetworkReader {
         this.addRegulatorSerializer(MaxCompositeRegulatorSerializer.getInstance());
         this.addRegulatorSerializer(MinCompositeRegulatorSerializer.getInstance());
         this.genes = new HashMap<>();
+        this.regulators = new HashMap<>();
         this.simulationEvents = new ArrayList<>();
     };
 
@@ -97,25 +98,28 @@ public class RegulatoryNetworkReader {
         double timeUpperBound = 0;
         int lineCounter = 0;
         for (String line = ""; line != null; line = bufferedReader.readLine()) {
-            lineCounter++;
-            String[] dispatchElement = line.split(" ");
-            switch (dispatchElement[0]) {
-                case "TimeStep":
-                    timeStep = Double.parseDouble(dispatchElement[1]);
-                    break;
-                case "TimeUpperBound":
-                    timeUpperBound = Double.parseDouble(dispatchElement[1]);
-                    break;
-                default:
-                    if (this.geneSerializers.containsKey(dispatchElement[0])) {
-                        this.addGene(getGeneSerializer(dispatchElement[0]).deserialize(line, this));
-                    } else if (this.eventSerializers.containsKey(dispatchElement[0])) {
-                        this.addSiumlationEvents(getEventSerializer(dispatchElement[0]).deserialize(line, this));
-                    } else if (this.regulatorSerializers.containsKey(dispatchElement[0])) {
-                        this.addRegulator(getRegulatorSerializer(dispatchElement[0]).deserialize(line, this));
-                    } else {
-                        throw new IOException("Error at : " + lineCounter);
-                    }
+            System.out.println(line);
+            if (line != "") {
+                lineCounter++;
+                String[] dispatchElement = line.split(" ");
+                switch (dispatchElement[0]) {
+                    case "TimeStep":
+                        timeStep = Double.parseDouble(dispatchElement[1]);
+                        break;
+                    case "TimeUpperBound":
+                        timeUpperBound = Double.parseDouble(dispatchElement[1]);
+                        break;
+                    default:
+                        if (this.geneSerializers.containsKey(dispatchElement[0])) {
+                            this.addGene(getGeneSerializer(dispatchElement[0]).deserialize(line, this));
+                        } else if (this.eventSerializers.containsKey(dispatchElement[0])) {
+                            this.addSiumlationEvents(getEventSerializer(dispatchElement[0]).deserialize(line, this));
+                        } else if (this.regulatorSerializers.containsKey(dispatchElement[1])) {
+                            this.addRegulator(getRegulatorSerializer(dispatchElement[1]).deserialize(line, this));
+                        } else {
+                            throw new IOException("Error at : " + lineCounter);
+                        }
+                }
             }
         }
         return new RegulatoryNetwork(new ArrayList<>(this.genes.values()),

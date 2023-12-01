@@ -15,12 +15,12 @@ public class SetProteinConcentrationEvent extends AbstractSimulationEvent {
 
     @Override
     public String description() {
-        return "" + this.newConcentration;
+        return this.newConcentration + "";
     }
 
     @Override
     protected void updateGene(Gene gene) {
-        gene.setProteinConcentration(newConcentration);
+        gene.setProteinConcentration(this.newConcentration);
     }
 
     @Override

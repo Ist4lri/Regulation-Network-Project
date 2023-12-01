@@ -20,7 +20,7 @@ public class SetSignaledEvent extends AbstractSimulationEvent {
 
     @Override
     protected void updateGene(Gene gene) {
-        gene.setSignaled(newSignaledValue);
+        gene.setSignaled(this.newSignaledValue);
     }
 
     @Override

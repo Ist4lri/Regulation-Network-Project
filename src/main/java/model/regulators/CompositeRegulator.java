@@ -14,9 +14,9 @@ public abstract class CompositeRegulator implements Regulator {
     protected abstract double cumulativeValue(double accumulator, double value);
 
     public double inputFunction() {
-        double result = 0.0;
+        double result = this.initialValue();
         for (Regulator regulator : this.regulators) {
-            result = this.cumulativeValue(this.initialValue(), regulator.inputFunction());
+            result = this.cumulativeValue(result, regulator.inputFunction());
         }
         return result;
     }

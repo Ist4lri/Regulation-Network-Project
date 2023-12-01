@@ -32,9 +32,9 @@ public class ConstantGeneSerializer implements EntitySerializer<ConstantGene> {
         String[] dispatchElement = string.split(" ");
 
         return new ConstantGene(
-                dispatchElement[0],
-                Double.parseDouble(dispatchElement[1]),
-                Boolean.parseBoolean(dispatchElement[2]));
+                dispatchElement[1],
+                Double.parseDouble(dispatchElement[2]),
+                Boolean.parseBoolean(dispatchElement[3]));
     }
 
     public synchronized static ConstantGeneSerializer getInstance() {

@@ -26,10 +26,10 @@ public class ListRegulatorSerializer implements EntitySerializer<List<Regulator>
 
     @Override
     public List<Regulator> deserialize(String string, RegulatoryNetworkReader reader) {
+        String[] toDispatchFirst = string.split("MaxCompositeRegulator");
+        String stringOfRegulator = toDispatchFirst[1].replace("]", "").replace(" [", "");
         List<Regulator> listOfRegulator = new ArrayList<>();
-        string.replace("[", "");
-        string.replace("]", "");
-        String[] toDispatch = string.split(",");
+        String[] toDispatch = stringOfRegulator.split(",");
         for (String onePart : toDispatch) {
             String[] newDispatch = onePart.split(" ");
             listOfRegulator.add(reader.getRegulators(newDispatch[0]));

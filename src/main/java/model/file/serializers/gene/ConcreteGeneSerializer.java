@@ -32,11 +32,11 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
         String[] dispatchElement = string.split(" ");
 
         return new ConcreteGene(
-                dispatchElement[0],
-                Double.parseDouble(dispatchElement[1]),
+                dispatchElement[2],
                 Double.parseDouble(dispatchElement[2]),
                 Double.parseDouble(dispatchElement[3]),
-                Boolean.parseBoolean(dispatchElement[4]));
+                Double.parseDouble(dispatchElement[4]),
+                Boolean.parseBoolean(dispatchElement[5]));
     }
 
     public synchronized static ConcreteGeneSerializer getInstance() {

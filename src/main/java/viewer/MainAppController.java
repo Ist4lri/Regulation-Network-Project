@@ -2,6 +2,7 @@ package viewer;
 
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import model.file.reader.RegulatoryNetworkReader;
 import model.file.writer.RegulatoryNetworkWriter;
 import model.network.RegulatoryNetwork;
@@ -12,7 +13,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class MainAppController {
-  public static final FileChooser.ExtensionFilter REGULATORY_NETWORK_FILES = new FileChooser.ExtensionFilter(
+  public static final FileChooser.ExtensionFilter REGULATORY_NETWORK_FILES = new ExtensionFilter(
       "Regulatory Network Files", "*.rgn");
   private MainApp mainApp;
 
@@ -37,7 +38,7 @@ public class MainAppController {
   @FXML
   public void openFile() {
     FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(REGULATORY_NETWORK_FILES);
+    fileChooser.getExtensionFilters().addAll(REGULATORY_NETWORK_FILES, new ExtensionFilter("All Files", "*.*"));
     File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
     if (file != null) {
@@ -60,11 +61,14 @@ public class MainAppController {
   public void saveFile() {
     FileChooser fileChooser = new FileChooser();
 
-    fileChooser.getExtensionFilters().add(REGULATORY_NETWORK_FILES);
+    fileChooser.getExtensionFilters().addAll(REGULATORY_NETWORK_FILES);
 
     File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
 
     if (file != null) {
+      // if (!file.getName().toLowerCase().endsWith(".rgn")) {
+      // file = new File(file.getAbsolutePath() + ".rgn");
+      // }
       try {
         BufferedWriter stream = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_16);
         regulatoryNetworkWriter.write(stream, regulatoryNetwork);
