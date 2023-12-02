@@ -19,9 +19,9 @@ public class ListRegulatorSerializer implements EntitySerializer<List<Regulator>
     public String serialize(List<Regulator> entity, RegulatoryNetworkWriter writer) {
         String toSend = "";
         for (Regulator regulator : entity) {
-            toSend += "+" + regulator.getClass().getSimpleName();
+            toSend += regulator.description() + ",";
         }
-        return "[" + toSend + "]";
+        return "[" + toSend.substring(0, toSend.length() - 1) + "]";
     }
 
     @Override

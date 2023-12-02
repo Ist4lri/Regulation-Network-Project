@@ -32,7 +32,8 @@ public class RegulatoryNetwork {
 
   private final List<SimulationEvent> simulationEvents = new ArrayList<>();
 
-  public RegulatoryNetwork(List<Gene> genes, List<SimulationEvent> simulationEvents, double timeStepLength, double timeUpperBound) {
+  public RegulatoryNetwork(List<Gene> genes, List<SimulationEvent> simulationEvents, double timeStepLength,
+      double timeUpperBound) {
     this.genes = genes;
     this.timeStepLength = timeStepLength;
     this.timeUpperBound = timeUpperBound;
@@ -46,7 +47,7 @@ public class RegulatoryNetwork {
   }
 
   private void simulateGenes() {
-    for(int stepCount = 0; stepCount * timeStepLength <= timeUpperBound; stepCount++){
+    for (int stepCount = 0; stepCount * timeStepLength <= timeUpperBound; stepCount++) {
       double time = stepCount * timeStepLength;
       manageEvents(time);
       collectData(time);
@@ -60,14 +61,14 @@ public class RegulatoryNetwork {
   }
 
   private void applyToGenes(List<SimulationEvent> currentEvents) {
-    for(SimulationEvent event : currentEvents)
+    for (SimulationEvent event : currentEvents)
       event.updateGenes();
   }
 
   private List<SimulationEvent> getCurrentEvents(double time) {
     List<SimulationEvent> currentEvents = new ArrayList<>();
-    for(SimulationEvent event : simulationEvents) {
-      if (Math.abs(event.getTime() - time) < timeStepLength/2.) {
+    for (SimulationEvent event : simulationEvents) {
+      if (Math.abs(event.getTime() - time) < timeStepLength / 2.) {
         currentEvents.add(event);
       }
     }
@@ -81,11 +82,10 @@ public class RegulatoryNetwork {
   }
 
   private void collectData(double time) {
-    for(int index = 0; index < genes.size(); index++) {
+    for (int index = 0; index < genes.size(); index++) {
       seriesList.get(index).getData().add(new XYChart.Data<>(time, genes.get(index).getProteinConcentration()));
     }
   }
-
 
   private void initializeSeriesList() {
     seriesList = new ArrayList<>();

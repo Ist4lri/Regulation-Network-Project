@@ -98,7 +98,6 @@ public class RegulatoryNetworkReader {
         double timeUpperBound = 0;
         int lineCounter = 0;
         for (String line = ""; line != null; line = bufferedReader.readLine()) {
-            System.out.println(line);
             if (line != "") {
                 lineCounter++;
                 String[] dispatchElement = line.split(" ");

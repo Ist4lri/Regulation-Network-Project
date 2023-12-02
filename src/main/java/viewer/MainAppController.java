@@ -38,7 +38,7 @@ public class MainAppController {
   @FXML
   public void openFile() {
     FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().addAll(REGULATORY_NETWORK_FILES, new ExtensionFilter("All Files", "*.*"));
+    fileChooser.getExtensionFilters().addAll(REGULATORY_NETWORK_FILES);
     File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
     if (file != null) {
