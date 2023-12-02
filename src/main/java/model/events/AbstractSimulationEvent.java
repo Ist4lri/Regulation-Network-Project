@@ -17,7 +17,6 @@ public abstract class AbstractSimulationEvent implements SimulationEvent {
     @Override
     public void updateGenes() {
         for (Gene gene : this.genes) {
-            System.out.println(gene);
             updateGene(gene);
         }
     }
