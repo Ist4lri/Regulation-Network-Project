@@ -30,9 +30,8 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
     @Override
     public ConcreteGene deserialize(String string, RegulatoryNetworkReader reader) {
         String[] dispatchElement = string.split(" ");
-
         return new ConcreteGene(
-                dispatchElement[2],
+                dispatchElement[1],
                 Double.parseDouble(dispatchElement[2]),
                 Double.parseDouble(dispatchElement[3]),
                 Double.parseDouble(dispatchElement[4]),

@@ -30,7 +30,6 @@ public class ConstantGeneSerializer implements EntitySerializer<ConstantGene> {
     @Override
     public ConstantGene deserialize(String string, RegulatoryNetworkReader reader) {
         String[] dispatchElement = string.split(" ");
-
         return new ConstantGene(
                 dispatchElement[1],
                 Double.parseDouble(dispatchElement[2]),
