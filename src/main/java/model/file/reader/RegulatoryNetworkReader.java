@@ -110,7 +110,6 @@ public class RegulatoryNetworkReader {
                         } else if (this.regulatorSerializers.containsKey(dispatchElement[1])) {
                             this.addRegulator(dispatchElement[0],
                                     getRegulatorSerializer(dispatchElement[1]).deserialize(line, this));
-
                         } else {
                             throw new IOException("Error at : " + lineCounter);
                         }
