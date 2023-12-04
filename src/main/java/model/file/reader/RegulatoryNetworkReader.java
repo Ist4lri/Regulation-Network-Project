@@ -27,7 +27,6 @@ public class RegulatoryNetworkReader {
     private Map<String, EntitySerializer<? extends SimulationEvent>> eventSerializers;
     private Map<String, EntitySerializer<? extends Regulator>> regulatorSerializers;
     private Map<String, Gene> genes;
-    private Map<String, Regulator> regulators;
     private ArrayList<SimulationEvent> simulationEvents;
 
     public RegulatoryNetworkReader() {
@@ -45,7 +44,6 @@ public class RegulatoryNetworkReader {
         this.addRegulatorSerializer(MaxCompositeRegulatorSerializer.getInstance());
         this.addRegulatorSerializer(MinCompositeRegulatorSerializer.getInstance());
         this.genes = new HashMap<>();
-        this.regulators = new HashMap<>();
         this.simulationEvents = new ArrayList<>();
     };
 
@@ -81,12 +79,8 @@ public class RegulatoryNetworkReader {
         this.simulationEvents.add(event);
     }
 
-    public void addRegulator(Regulator regulator) {
-        this.regulators.put(regulator.getClass().getSimpleName(), regulator);
-    }
-
-    public Regulator getRegulators(String regulatorName) {
-        return regulators.get(regulatorName);
+    public void addRegulator(String geneName, Regulator regulator) {
+        this.getGene(geneName).setRegulator(regulator);
     }
 
     public Gene getGene(String geneName) {
@@ -114,13 +108,17 @@ public class RegulatoryNetworkReader {
                         } else if (this.eventSerializers.containsKey(dispatchElement[0])) {
                             this.addSiumlationEvents(getEventSerializer(dispatchElement[0]).deserialize(line, this));
                         } else if (this.regulatorSerializers.containsKey(dispatchElement[1])) {
-                            this.addRegulator(getRegulatorSerializer(dispatchElement[1]).deserialize(line, this));
+                            this.addRegulator(dispatchElement[0],
+                                    getRegulatorSerializer(dispatchElement[1]).deserialize(line, this));
+
                         } else {
                             throw new IOException("Error at : " + lineCounter);
                         }
                 }
             }
         }
+        System.out.println(this.genes);
+        System.out.println(this.simulationEvents);
         return new RegulatoryNetwork(new ArrayList<>(this.genes.values()),
                 this.simulationEvents, timeStep, timeUpperBound);
     }
