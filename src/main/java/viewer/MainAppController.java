@@ -66,9 +66,9 @@ public class MainAppController {
     File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
 
     if (file != null) {
-      // if (!file.getName().toLowerCase().endsWith(".rgn")) {
-      // file = new File(file.getAbsolutePath() + ".rgn");
-      // }
+      if (!file.getName().toLowerCase().endsWith(".rgn")) {
+        file = new File(file.getAbsolutePath() + ".rgn");
+      }
       try {
         BufferedWriter stream = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_16);
         regulatoryNetworkWriter.write(stream, regulatoryNetwork);

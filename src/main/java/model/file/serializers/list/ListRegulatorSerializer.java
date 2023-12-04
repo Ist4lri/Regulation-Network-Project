@@ -33,16 +33,22 @@ public class ListRegulatorSerializer implements EntitySerializer<List<Regulator>
         String[] toDispatch = stringOfRegulator.split(",");
         for (String onePart : toDispatch) {
             String[] newDispatch = onePart.split(" ");
-            Regulator regulator;
 
             if (newDispatch[0].equals("BooleanActivator")) {
-                regulator = new BooleanActivator(Double.parseDouble(newDispatch[1]), reader.getGene(newDispatch[2]));
+
+                listOfRegulator.add(new BooleanActivator(
+                        Double.parseDouble(newDispatch[1]),
+                        reader.getGene(newDispatch[2])));
+
             } else if (newDispatch[0].equals("BooleanRepressor")) {
-                regulator = new BooleanRepressor(Double.parseDouble(newDispatch[1]), reader.getGene(newDispatch[2]));
+
+                listOfRegulator.add(new BooleanRepressor(
+                        Double.parseDouble(newDispatch[1]),
+                        reader.getGene(newDispatch[2])));
+
             } else {
                 throw new IllegalArgumentException("Unknown regulator type: " + newDispatch[0]);
             }
-            listOfRegulator.add(regulator);
         }
         return listOfRegulator;
     }
