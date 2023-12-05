@@ -5,9 +5,9 @@ import java.util.List;
 
 import model.file.reader.RegulatoryNetworkReader;
 import model.file.serializers.gene.EntitySerializer;
+import model.file.serializers.regulators.BooleanActivatorSerializer;
+import model.file.serializers.regulators.BooleanRepressorSerializer;
 import model.file.writer.RegulatoryNetworkWriter;
-import model.regulators.BooleanActivator;
-import model.regulators.BooleanRepressor;
 import model.regulators.Regulator;
 
 public class ListRegulatorSerializer implements EntitySerializer<List<Regulator>> {
@@ -35,19 +35,14 @@ public class ListRegulatorSerializer implements EntitySerializer<List<Regulator>
             String[] newDispatch = onePart.split(" ");
 
             if (newDispatch[0].equals("BooleanActivator")) {
-
-                listOfRegulator.add(new BooleanActivator(
-                        Double.parseDouble(newDispatch[1]),
-                        reader.getGene(newDispatch[2])));
+                listOfRegulator.add(new BooleanActivatorSerializer().deserialize(onePart, reader));
 
             } else if (newDispatch[0].equals("BooleanRepressor")) {
-
-                listOfRegulator.add(new BooleanRepressor(
-                        Double.parseDouble(newDispatch[1]),
-                        reader.getGene(newDispatch[2])));
+                listOfRegulator.add(new BooleanRepressorSerializer().deserialize(onePart, reader));
 
             } else {
-                throw new IllegalArgumentException("Unknown regulator type: " + newDispatch[0]);
+                throw new IllegalArgumentException(
+                        "Unknown regulator type: " + newDispatch[0] + ". Need to define one");
             }
         }
         return listOfRegulator;

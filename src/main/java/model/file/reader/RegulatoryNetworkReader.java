@@ -116,8 +116,6 @@ public class RegulatoryNetworkReader {
                 }
             }
         }
-        System.out.println(this.genes);
-        System.out.println(this.simulationEvents);
         return new RegulatoryNetwork(new ArrayList<>(this.genes.values()),
                 this.simulationEvents, timeStep, timeUpperBound);
     }

@@ -30,10 +30,21 @@ public class ConstantGeneSerializer implements EntitySerializer<ConstantGene> {
     @Override
     public ConstantGene deserialize(String string, RegulatoryNetworkReader reader) {
         String[] dispatchElement = string.split(" ");
+        Double proteinConcentration = Double.parseDouble(dispatchElement[2]);
+        String isSignaled = dispatchElement[3];
+
+        if (proteinConcentration < 0) {
+            throw new IllegalArgumentException(
+                    "Error : Protein Concentration can't be negative. Verify your file !");
+        } else if (!isSignaled.equals("false") && !isSignaled.equals("true")) {
+            throw new IllegalArgumentException(
+                    "Is Signaled option must be 'false' or 'true' (case sensitive)");
+        }
+
         return new ConstantGene(
                 dispatchElement[1],
-                Double.parseDouble(dispatchElement[2]),
-                Boolean.parseBoolean(dispatchElement[3]));
+                proteinConcentration,
+                Boolean.parseBoolean(isSignaled));
     }
 
     public synchronized static ConstantGeneSerializer getInstance() {

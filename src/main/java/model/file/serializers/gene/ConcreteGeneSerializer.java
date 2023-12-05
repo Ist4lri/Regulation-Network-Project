@@ -30,12 +30,25 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
     @Override
     public ConcreteGene deserialize(String string, RegulatoryNetworkReader reader) {
         String[] dispatchElement = string.split(" ");
+        Double maxProduction = Double.parseDouble(dispatchElement[2]);
+        Double degradationRate = Double.parseDouble(dispatchElement[3]);
+        Double initialProteinConcentration = Double.parseDouble(dispatchElement[4]);
+        String isSignaled = dispatchElement[5];
+
+        if (maxProduction < 0 || degradationRate < 0 || initialProteinConcentration < 0) {
+            throw new IllegalArgumentException(
+                    "Production, DegradationRate or Initial Concentration can't be negative");
+        } else if (!isSignaled.equals("false") && !isSignaled.equals("true")) {
+            throw new IllegalArgumentException(
+                    "Is Signaled option must be 'false' or 'true' (case sensitive)");
+        }
+
         return new ConcreteGene(
                 dispatchElement[1],
-                Double.parseDouble(dispatchElement[2]),
-                Double.parseDouble(dispatchElement[3]),
-                Double.parseDouble(dispatchElement[4]),
-                Boolean.parseBoolean(dispatchElement[5]));
+                maxProduction,
+                degradationRate,
+                initialProteinConcentration,
+                Boolean.parseBoolean(isSignaled));
     }
 
     public synchronized static ConcreteGeneSerializer getInstance() {

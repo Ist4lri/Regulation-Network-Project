@@ -29,10 +29,20 @@ public class SetSignaledEventSerializer implements EntitySerializer<SetSignaledE
     @Override
     public SetSignaledEvent deserialize(String string, RegulatoryNetworkReader reader) {
         String[] toDispatch = string.split(" ");
+        Double time = Double.parseDouble(toDispatch[1]);
+        String newSignaledValue = toDispatch[3];
+
+        if (time <= 0) {
+            throw new IllegalArgumentException(
+                    "Time can't be under or equals 0 for an event .");
+        } else if (!newSignaledValue.equals("false") && !newSignaledValue.equals("true")) {
+            throw new IllegalArgumentException(
+                    "Is Signaled option must be 'false' or 'true' (case sensitive)");
+        }
 
         return new SetSignaledEvent(new ListGeneSerializer().deserialize(toDispatch[2], reader),
-                Double.parseDouble(toDispatch[1]),
-                Boolean.parseBoolean(toDispatch[3]));
+                time,
+                Boolean.parseBoolean(newSignaledValue));
     }
 
     public synchronized static SetSignaledEventSerializer getInstance() {

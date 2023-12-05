@@ -31,7 +31,13 @@ public class ListGeneSerializer implements EntitySerializer<List<Gene>> {
         String[] toDispatch = string.split("");
         for (String character : toDispatch) {
             if (!(character.equals(",") || character.equals("[") || character.equals("]"))) {
-                listOfGene.add(reader.getGene(character));
+                Gene gene = reader.getGene(character);
+                if (gene != null) {
+                    listOfGene.add(gene);
+                } else {
+                    throw new IllegalArgumentException(
+                            "Gene Unknown. PLease, verify your gene Name in your Event lines.");
+                }
             }
         }
         return listOfGene;

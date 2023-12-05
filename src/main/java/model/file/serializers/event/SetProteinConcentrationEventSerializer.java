@@ -29,9 +29,20 @@ public class SetProteinConcentrationEventSerializer implements EntitySerializer<
     @Override
     public SetProteinConcentrationEvent deserialize(String string, RegulatoryNetworkReader reader) {
         String[] toDispatch = string.split(" ");
+        Double time = Double.parseDouble(toDispatch[1]);
+        Double newProteinConcentration = Double.parseDouble(toDispatch[3]);
+
+        if (time <= 0) {
+            throw new IllegalArgumentException(
+                    "Time can't be under or equals 0 for an event .");
+        } else if (newProteinConcentration < 0) {
+            throw new IllegalArgumentException(
+                    "A New Concentration protein can't be negative.");
+        }
+
         return new SetProteinConcentrationEvent(new ListGeneSerializer().deserialize(toDispatch[2], reader),
-                Double.parseDouble(toDispatch[1]),
-                Double.parseDouble(toDispatch[3]));
+                time,
+                newProteinConcentration);
     }
 
     public synchronized static SetProteinConcentrationEventSerializer getInstance() {
