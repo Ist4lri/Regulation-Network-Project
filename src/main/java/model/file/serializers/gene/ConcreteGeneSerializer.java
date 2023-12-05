@@ -24,7 +24,7 @@ public class ConcreteGeneSerializer implements EntitySerializer<ConcreteGene> {
                 + entity.getMaximalProduction() + " "
                 + entity.getDegradationRate() + " "
                 + entity.getInitialProteinConcentration() + " "
-                + entity.isSignaled() + "\n";
+                + entity.getInitialIsSignaled() + "\n";
     }
 
     @Override
