@@ -10,6 +10,8 @@ import model.regulators.AlwaysOffRegulator;
 import model.regulators.AlwaysOnRegulator;
 import model.regulators.BooleanActivator;
 import model.regulators.BooleanRepressor;
+import model.regulators.HillsActivatorRegulator;
+import model.regulators.HillsRepressorRegulator;
 import model.regulators.MaxCompositeRegulator;
 import model.regulators.MinCompositeRegulator;
 
@@ -49,6 +51,18 @@ public class ConcreteRegulatorVisitor implements RegulatorVisitor {
     @Override
     public String visit(MinCompositeRegulator regulator) {
         return MinCompositeRegulatorSerializer.getInstance().serialize(regulator, writer);
+    }
+
+    @Override
+    public String visit(HillsActivatorRegulator regulator) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'visit'");
+    }
+
+    @Override
+    public String visit(HillsRepressorRegulator regulator) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'visit'");
     }
 
 }

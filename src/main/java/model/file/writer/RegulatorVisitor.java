@@ -4,6 +4,8 @@ import model.regulators.AlwaysOffRegulator;
 import model.regulators.AlwaysOnRegulator;
 import model.regulators.BooleanActivator;
 import model.regulators.BooleanRepressor;
+import model.regulators.HillsActivatorRegulator;
+import model.regulators.HillsRepressorRegulator;
 import model.regulators.MaxCompositeRegulator;
 import model.regulators.MinCompositeRegulator;
 
@@ -20,4 +22,8 @@ public interface RegulatorVisitor {
     public String visit(MaxCompositeRegulator regulator);
 
     public String visit(MinCompositeRegulator regulator);
+
+    public String visit(HillsActivatorRegulator regulator);
+
+    public String visit(HillsRepressorRegulator regulator);
 }
