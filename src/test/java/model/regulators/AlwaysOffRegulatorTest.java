@@ -1,17 +1,17 @@
 package model.regulators;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+public class AlwaysOffRegulatorTest {
 
-public class AlwaysOnRegulatorTest {
-
-    private AlwaysOnRegulator regulator;
+    private AlwaysOffRegulator regulator;
 
     @BeforeEach
     public void setUp() {
-        regulator = new AlwaysOnRegulator();
+        regulator = new AlwaysOffRegulator();
     }
 
     @Test
@@ -21,6 +21,6 @@ public class AlwaysOnRegulatorTest {
 
     @Test
     void testInputFunction() {
-        assertThat(regulator.inputFunction()).isOne();
+        assertThat(regulator.inputFunction()).isZero();
     }
 }
